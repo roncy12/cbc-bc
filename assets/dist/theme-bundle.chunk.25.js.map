@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./assets/js/theme/sitemap.js"],"names":["SiteMap","PageManager"],"mappings":";;;;;;;;;;;;;;;;;;AAAA;;IAEqBA,O;;;;;;;;;;EAAgBC,qD;;AAAhBD,sE","file":"theme-bundle.chunk.25.js","sourcesContent":["import PageManager from './page-manager';\n\nexport default class SiteMap extends PageManager {}\n"],"sourceRoot":""}

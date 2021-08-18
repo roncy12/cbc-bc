@@ -1,0 +1,12 @@
+<h2 class="page-heading" id="featuredHeading">Featured Coffees</h2>
+
+<ul class="productGrid productGrid--maxCol{{ columns }}" data-product-type="featured" {{#if settings.data_tag_enabled}} data-list-name="Featured Products" {{/if}} style="column-count:5;" id="customFeature">
+    {{#each products}}
+        <li class="product">
+                {{>components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        </li>
+    {{/each}}
+</ul>
+<!--
+<div class="themevale_showMoreProduct" style="margin-bottom: 5%;"><a class="button big-button button--border" href="/collections/holiday-seasonal-coffee">Show More</a></div>
+-->

@@ -1,0 +1,24 @@
+{{#if product_price }}
+		<div class="item-qty qty-1 _active" data-qty="1" >
+			<span class="qty-label"> 1 Bottle</span><br><span class="qty-price">{{product_currency}}{{ product_price }}</span>
+		</div>
+	{{#each product.bulk_discount_rates}}
+		<div class="item-qty qty-{{min}} " data-qty="{{min}}" >
+			<span class="qty-label"> {{min}} Bottles</span><br>
+			{{#if type '===' 'percent'}}
+                <span class="qty-price"><span class="old-price">{{ ../../product_currency}}{{ ../../product_price }}</span> {{ ../../product_currency}}{{addCommas (toFixed (multiply ../../product_price (subtract 1 (divide discount.value 100))) 2)}} each</span><br>
+				<span class="qty-save">SAVE {{ discount.formatted }}</span>
+            {{/if}}
+            {{#if type '===' 'fixed'}}
+				<span class="qty-price"><span class="old-price">{{ ../../product_currency}}{{ ../../product_price }}</span> {{ discount.formatted }} each</span><br>
+				<span class="qty-save">SAVE {{toInt (multiply 100 (subtract 1 (divide discount.value ../../product_price))) }}%</span>
+            {{/if}}
+            {{#if type '===' 'price'}}
+                <span class="qty-save">{{lang 'products.bulk_pricing.price' discount=discount.formatted}}</span>
+            {{/if}}      
+		</div>   			
+    {{/each}}
+{{/if}}
+
+
+

@@ -1,0 +1,50 @@
+{{#if product.bulk_discount_rates.length}}
+	<div class="bulk-pricing-chart">
+	
+                {{#each product.bulk_discount_rates}}
+           
+               
+                    {{#if type '===' 'percent'}}
+                    {{assignVar "type_format" "percent"}}
+                    {{else if type '===' 'fixed'}}
+                    {{assignVar "type_format" "fixed"}}
+                    {{else if type '===' 'price'}}
+                    
+                    {{/if}}
+           
+                {{/each}}
+            
+		<span class="price-range-label"><strong>Bulk Price:</strong>  </span>
+		{{#if (getVar "type_format") '===' 'percent'}}
+			<span class="max-price">	
+				{{#withFirst product.bulk_discount_rates }}
+				  {{ discount.formatted }}
+				{{/withFirst}}
+			</span>
+			 - 
+			<span class="min-price">
+				{{#withLast product.bulk_discount_rates }}
+				  {{ discount.formatted }}
+				{{/withLast}}
+			</span>	
+			 off 
+			
+		{{else if (getVar "type_format") '===' 'fixed'}}	
+			<span class="min-price">
+				{{#withLast product.bulk_discount_rates }}
+				  {{ discount.formatted }}
+				{{/withLast}}
+			</span>	
+			 - 
+			<span class="max-price">	
+				{{#withFirst product.bulk_discount_rates }}
+				  {{ discount.formatted }}
+				{{/withFirst}}
+			</span>
+		 
+		{{else if (getVar "type_format") '===' 'price'}}
+		 
+		{{/if}}
+	</div>
+	
+{{/if}}

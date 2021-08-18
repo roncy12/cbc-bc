@@ -1,0 +1,45 @@
+{{#partial "page"}}
+
+<style>
+*:before{display:none !important;}
+</style>
+<div class="container">
+    <main class="page">
+        {{#if page.sub_pages}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                    {{#each page.sub_pages}}
+                        <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+            </nav>
+        {{/if}}
+        <div class="page-content themevale_contact-us">
+			<div class="contacts-div" style="background-image: url('{{cdn '/assets/img/contac-us-bg.png'}}');">
+				
+				<div><h2>CONTACT US</h2></div>
+			</div>
+            <div class="themevale_form">
+                <div id="contact-us-page">
+                    {{#if forms.contact.success}}
+                        <div id="contact-us-success">{{{lang 'forms.contact_us.successful' shopPath=urls.home}}}</div>
+                    {{else}}
+                        <p>Have a question?</p>
+                        {{> components/page/contact-us-form}}
+                    {{/if}}
+                </div>
+            </div>
+            <div class="themevale_location">
+                <h2 class="title">Office</h2>
+				<p>1601 Tionia Road <br>New Smyrna Beach, Florida. 32168</p>
+                <h2 class="title">Email Only</h2>
+				<p>support@christopherbean.com</p>
+                <h2 class="title">Hours</h2>
+				<p>Monday - Friday 9am-5pm<br>Weekends - Closed</p>
+            </div>
+        </div>
+    </main>
+</div>
+{{/partial}}
+
+{{> layout/base}}

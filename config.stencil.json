@@ -1,0 +1,16 @@
+{
+  "normalStoreUrl": "https://christopherbean.com/",
+  "port": "3000",
+  "customLayouts": {
+    "brand": {},
+    "category": {
+		"category-featured-product.html" : "/cold-brew-concentrates/featured-cold-brew-concentrates/"
+	},
+    "page": {
+		"cms-cold-brew-liquid-concentrates.html" :"/cold-brew-liquid-concentrates/"
+	},
+    "product": {
+
+	}
+  }
+}

@@ -1,0 +1,421 @@
+
+
+{{#partial "hero"}}
+{{#if carousel}}
+{{> components/carousel carousel=carousel layout="layout-1" arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots}}
+{{/if}}
+{{{snippet 'home_content'}}}
+{{/partial}}
+{{#partial "page"}}
+{{#each shipping_messages}}
+{{> components/common/alert-info message}}
+{{/each}}
+<div class="main full">
+	{{> components/themevale/homepage/component/image-collections image-collections="image-collections-1" padding_top="padding-top-30" padding_bottom="padding-bottom-50"}}
+	<!--insert new product stencil code here-->
+
+	<!--Holiday Featured Products-->
+
+    {{#if products.featured}}
+        {{> components/products/custom-featured products=products.featured title=theme_settings.homepage_products_featured_title layout=theme_settings.homepage_products_featured_layout_grid columns=theme_settings.homepage_products_featured_column products_show=theme_settings.homepage_products_featured_show products_limit=theme_settings.homepage_products_featured_limit description=theme_settings.homepage_products_featured_description}}
+    {{/if}}
+ 
+    
+	<div class="home-prod-list">
+		<h2> SHOP CHRISTOPHER BEAN </h2>
+		<p class="custom-p">Coffee? Tea? Or both? Shop by category or shop til you drop.</p>
+		<div>
+				<img class="home-prod-img" src="{{cdn '/assets/img/home/coffee.png'}}"/>
+				<p class="custom-p">Coffee</p>
+				<a href="/all-coffee/" class="home-btn-shop">Shop Now</a>
+		</div>
+		<div>
+				<img class="home-prod-img" src="{{cdn '/assets/img/home/singlecups.png'}}"/>
+				<p class="custom-p">Singe Cups</p>
+				<a href="/collections/all-single-cups" class="home-btn-shop">Shop Now</a>
+		</div>
+		<div>
+				<img class="home-prod-img"src="{{cdn '/assets/img/home/coldbrew.png'}}"/>
+				<p class="custom-p">Cold Brew</p>
+				<a href="/collections/coffee-concentrate-1" class="home-btn-shop">Shop Now</a>
+		</div>
+		<div>
+				<img class="home-prod-img" src="{{cdn '/assets/img/home/tea.png'}}"/>
+				<p class="custom-p">Tea</p>
+				<a href="/collections/all-tea" class="home-btn-shop">Shop Now</a>
+		</div>
+		</ul>
+	</div>
+	<!--
+	<div class="home-ads-list">
+		<div>
+				<img class="home-ads-img" src="{{cdn '/assets/img/home/home-shipping.png'}}"/>
+		</div>
+		<div>
+				<img class="home-ads-img" src="{{cdn '/assets/img/home/home-account.png'}}"/>
+				<a style="bottom: 13%;"	 href="/login.php?action=create_account" class="ads-button">CREATE AN ACCOUNT</a>
+		</div>
+	</div>
+	<div class="home-ads-list">
+		<div>
+				<img class="home-ads-img" src="{{cdn '/assets/img/home/home-birthday.png'}}"/>
+				<a	 class="ads-button">ADD MY BIRTHDAY</a>
+		</div>
+		<div>
+				<img class="home-ads-img" src="{{cdn '/assets/img/home/home-subscription.png'}}"/>
+				<a	 class="ads-button">SUBSCRIBE NOW</a>
+		</div>
+	</div>
+	-->
+	
+	<div class="home-ads-list-custom">
+		<div class="custom-boot-row">
+			<div class="column-5">
+				<div class="top-col ad-bg" id="free-ad" style="background-image: url('{{cdn '/assets/img/free-shipping-bg.png'}}');">
+					<div>
+						<h2>Free Shipping</h2>
+						<p>For orders worth $60 or more</p>
+					</div>
+				</div>
+				<div class="bot-col ad-bg" id="birthday-ad" style="background-image: url('{{cdn '/assets/img/birthday-bg.png'}}');background-size:cover;background-repeat: no-repeat;;">
+					<div>
+						<h2>Celebrate your<br/> birthday with us!</h2>
+						<p>Get a special treat on your birthday.</p>
+						<div class="ad-button">
+							<a target="_blank" href="https://forms.omnisrc.com/signup/v1/5ed9421e4c7fa444d7862871_5ef4b5fb99f0b7131f03fd01.html">ADD MY BIRTHDAY</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column-2">
+				<div class="mid-col" id="shop-ad">
+					<div class="shop-ad-grouped">
+						<h2>Shop.<br/> Earn.<br/> Save.</h2>
+						<div class="shop-ad-row">
+							<div class="shop-ad-row-logo">
+								<img src="{{cdn '/assets/img/open.png'}}">
+							</div>
+							<div class="shop-ad-row-details">
+								<h3>Open An Account</h3>
+								<p>It's easy, and there's<br/> no purchase required.</p>
+							</div>
+						</div>
+						<div class="shop-ad-row">
+							<div class="shop-ad-row-logo">
+								<img src="{{cdn '/assets/img/earn-points.png'}}">
+							</div>
+							<div class="shop-ad-row-details">
+								<h3>Earn Points</h3>
+								<p>Earn 1 point for every $1<br/> you spend with us.</p>
+							</div>
+						</div>
+						<div class="shop-ad-row">
+							<div class="shop-ad-row-logo">
+								<img src="{{cdn '/assets/img/choose-reward.png'}}">
+							</div>
+							<div class="shop-ad-row-details" id="choose-reward-click" style="cursor: pointer;">
+								<h3>Choose Reward</h3>
+								<p>Redeem your points<br/> for discount coupons.</p>
+							</div>
+						</div>
+
+						<div class="ad-button">
+							<a href="/bean-bucks-rewards/" target="_blank">EARN POINTS NOW</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column-5">
+				<div class="top-col ad-bg" id="refer-ad" style="background-image: url('{{cdn '/assets/img/refer-a-friend.png'}}');">
+					<div>
+						<h2>Refer A Friend</h2>
+						<p>Give $10, Get $10</p>
+						<div class="know-more-refer">
+						    <a href="https://christopherbean.com/referral-page/" target="_blank">Know More</a>
+						</div>
+					</div>
+				</div>
+				<div class="bot-col ad-bg" id="sub-ad" style="background-image: url('{{cdn '/assets/img/subscription-bg.png'}}');">
+					<div>
+						<h2>Subscription</h2>
+						<p>Join our monthly subscription<br/> and enjoy Christopher Bean perks and bonuses.</p>
+						<div class="ad-button">
+							<a id="home-subscribeBtn" href="/subscription/" style="color: #fff;">SUBSCRIBE NOW</a>
+							<script>
+                                // Get the modal
+                                var modalHome = document.getElementById("myModalz");
+                                
+                                // Get the button that opens the modal
+                                var homeBtn = document.getElementById("home-subscribeBtn");
+                                
+                                // Get the <span> element that closes the modal
+                                var spanHome = document.getElementsByClassName("closez")[0];
+                                
+                                // When the user clicks on the button, open the modal
+                                //homeBtn.onclick = function() {
+                                //    modalHome.style.display = "block";
+                                //}
+                                
+                                // When the user clicks on <span> (x), close the modal
+                                spanHome.onclick = function() {
+                                    modalHome.style.display = "none";
+                                }
+                                
+                                // When the user clicks anywhere outside of the modal, close it
+                                window.onclick = function(event) {
+                                  if (event.target == modalHome) {
+                                    modalHome.style.display = "none";
+                                  }
+                                }
+                            </script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="home-discounted-prod">
+		<img class="home-ads-img" src="{{cdn '../img/home/coldbrew-bg.png'}}"/>
+		<div class="discount-text">
+			<p class="custom-text">Cold Brew Concentrate:</p>
+			<p class="custom-text1">America’s Favorite</p>
+			<h2 class="custom-text2">Coffee in a Bottle</h2>
+			<p class="custom-text3">For a LIMITED TIME ONLY, save up to  30% OFF plus FREE SHIPPING by using this code XTRA10 at checkout!</p>
+			<p class="custom-text4">Make delicious coffee (hot or cold) in seconds! Christopher Bean’s Cold Brew Concentrate is made<br id="br1"> from high-grown, 100% Arabica beans roasted in small batches to ensure freshness in every sip.</p>
+			<div class="disc-btn"><a class="discount-btn">Shop Discounted Products Now</a></div>
+		</div>
+	</div>
+
+	<div class="home-you-want">
+		<div>
+				<h2>Coffee & Tea:<br>The way you want it.</h2>
+		</div>
+		<div>
+				<img class="home-ads-img" src="{{cdn '/assets/img/home/wantit-1.png'}}"/>
+				<p>Freshly roasted high quality coffee beans everytime you place an order.</p>
+		</div>
+		<div>
+				<img class="home-ads-img" src="{{cdn '/assets/img/home/wantit-2.png'}}"/>
+				<p>We manufacture and roast our own coffee; say no to costly middlemen.</p>
+		</div>
+		<div>
+				<img class="home-ads-img" src="{{cdn '/assets/img/home/wantit-3.png'}}"/>
+				<p>Say goodbye to stale coffee with our excellent roasting service.</p>
+		</div>
+	</div>
+
+	<div class="home-top-seller">
+		<h2> TOP SELLER AND FAVORITES</h2>
+		<div>
+				<img class="home-topseller-img" src="{{cdn '/assets/img/home/BAG_Amaretto.png'}}"/>
+				<p class="custom-p1">Amaretto</p>
+				<a class="home-btn-shop" href="/amaretto/">Shop Now</a>
+		</div>
+		<div>
+				<img class="home-topseller-img" src="{{cdn '/assets/img/home/BAG_Dawn_Patrol.png'}}"/>
+				<p class="custom-p1">Dawn Patrol</p>
+				<a class="home-btn-shop" href="/dawn-patrol/">Shop Now</a>
+		</div>
+		<div>
+				<img class="home-topseller-img" src="{{cdn '/assets/img/home/BAG_Dark_Mountain_Magic.png'}}"/>
+				<p class="custom-p1">Dark Mountain Magic</p>
+				<a class="home-btn-shop" href="/dark-mountain-magic/">Shop Now</a>
+		</div>
+		<div>
+				<img class="home-topseller-img" src="{{cdn '/assets/img/home/BAG_Black-Diamonte.png'}}"/>
+				<p class="custom-p1">Black Diamonte</p>
+				<a class="home-btn-shop" href="/black-diamonte/">Shop Now</a>
+		</div>
+		<div>
+				<img class="home-topseller-img" src="{{cdn '/assets/img/home/BAG_Chocolate_Indulgence.png'}}"/>
+				<p class="custom-p1">CHOCOLATE INDULGENCE</p>
+				<a class="home-btn-shop" href="/chocolate-indulgence/">Shop Now</a>
+		</div>
+	</div>
+	<div class="home-subscribe">
+		<h2>SUBSCRIBE & SAVE<br>COFFEE ON YOUR TERMS</h2>
+		<div>
+				<img class="home-subscribe-img" src="{{cdn '/assets/img/home/subscribe-1.png'}}"/>
+				<p class="custom-p2">Choose<br>Your Coffee</p>
+		</div>
+		<div>
+				<img class="home-subscribe-img" src="{{cdn '/assets/img/home/subscribe-2.png'}}"/>
+				<p class="custom-p2">Choose<br>Your Frequency</p>
+		</div>
+		<div>
+				<img class="home-subscribe-img" src="{{cdn '/assets/img/home/subscribe-3.png'}}"/>
+				<p class="custom-p2">Coffee<br>is Roasted</p>
+		</div>
+		<div>
+				<img class="home-subscribe-img" src="{{cdn '/assets/img/home/subscribe-4.png'}}"/>
+				<p class="custom-p2">Coffee<br>is Delivered</p>
+		</div>
+	</div>
+<!--	<div>
+		<img src="{{cdn '/assets/img/home/home-banner-2.png'}}" />
+	</div>-->
+	<div class="home-girl-banner" style="background-image: url('https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/girl-bg.jpg?t=1593131541&_ga=2.156951933.796758591.1592785354-1335674609.1584404257');">
+	    <div class="girl-banner-content">
+	        <h2 id="girl-green">Your Coffee. </h2>
+	        <h2 id="girl-white">Our Passion—<span id="girl-brown">Always</span></h2>
+	        <p>Since 1996, our passion for great coffee has taken us to unforgettable adventures <br/>
+            in the world's most exotic locales. Our mission is simple: to source the rarest coffees, <br/>
+            improve them, and share them with you. We take pride in the quality of our service, <br/>
+            and it'll be our legacy to provide our customers the best possible coffee experience.</p>
+	    </div>
+	</div>
+	<div class="home-reviews">
+		<h2> REVIEWS </h2>
+		<div id="stamped-reviews-widget" data-widget-type="carousel" data-auto-play="true" data-auto-play-speed="10000" data-fill-empty="true" data-random="true"></div>
+	</div>
+	<div class="home-instagram">
+		<h2 style="background:url({{cdn '/assets/img/home/instagram-ico.png'}})no-repeat 0 0;padding-left: 5%;">FOLLOW US ON INSTAGRAM</h2>
+		<p>Get updated with our promos, sales, new coffees, and more!</p>
+
+		<div id="ctl-instagram-feed"  ><img style="display:block; margin:auto;" class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" /> </div>
+		
+		<script src="{{cdn 'assets/slick.min.js'}}"></script>
+		<script src="{{cdn 'assets/InstagramFeed-slick.min.js'}}"></script>
+
+		<script>
+			var slick_option = {
+			"dots": false,
+			"arrows": true,
+			"mobileFirst": true,
+			"slidesToShow": 1,
+			"slidesToScroll": 1,
+			"rows":1,
+			"autoplaySpeed": 7000,
+			"autoplay": true,
+			"infinite": true,
+			"responsive": [
+
+				
+				{
+					"breakpoint": 551,
+					"settings": "unslick"
+				    
+				}
+			]
+		};
+		
+		var slick_container = '#ctl-instagram-feed > div';
+		
+		var _igFlag = 0;
+		jQuery(window).on('scroll', function (e) {
+			if(_igFlag==0){
+				jQuery.instagramFeed({
+					'username': 'christopherbeancoffee',
+					'container': document.getElementById("ctl-instagram-feed"),
+					'display_profile': false,
+					'display_biography': false,
+					'display_gallery': true,
+					'display_igtv': true,
+					'display_captions': true,
+					'max_tries': 8,
+					'callback': letSlick,
+					'styling': true,
+					'items': 8,
+					'items_per_row': 4,
+					'margin': 1,
+					'lazy_load': true,
+					'on_error': console.error,
+					'slick':  slick_container,
+					'slick_option': slick_option
+				});
+				_igFlag = 1;
+				
+				
+			}
+		});
+		
+		function letSlick(options){
+			jQuery( slick_container).not('.slick-initialized').slick(slick_option); 
+		}
+		
+		</script>	
+	</div>
+		
+		<a class="ins-gallery" href="https://www.instagram.com/christopherbeancoffee/">VIEW GALLERY</a>
+	</div>
+	
+	<div class="home-blog">
+		<h2>FROM THE BLOG</h2>
+			{{#each blog.recent_posts}}
+
+
+
+		<div>
+				<img class="home-blog-img" src="{{getImage thumbnail}}"/>
+				<p class="custom-p3">{{title}}</p>
+				<p class="blog-date">{{date_published}}</p>
+				<p class="blog-intro">{{summary}}</p>
+				<a href="{{url}}" class="blog-read">Read more...</a>
+		</div>
+
+	
+	 {{/each}}
+
+	</div>	
+	
+	
+	
+	
+	<div style="background:url('https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/cbn-bottom-bg.jpg?t=1602223828&_ga=2.87213535.654533023.1602030489-1335674609.1584404257')no-repeat ;background-size: cover;" class="home-apps" id="cbd-section">
+	    <!--<div class="home-apps" id="cbd-section">-->
+	    
+	    <div id="cbn-site-content">
+    	    <h3>Get a taste of cbd's health benefits with</h3>
+    	    <h2>Christopher Bean Naturals <br/>Coffee + Full-spectrum CBD</h2>
+    	    <p>Experience next-level coffee at christopherbeannaturals.com</p>
+    	    
+    	    <div id="cbn-site-button">
+    	        <a href="https://christopherbeannaturals.com/" target="_blank">VISIT STORE</a>
+    	    </div>
+    	</div>
+		
+		
+		<!--
+		<a href="https://christopherbeannaturals.com/" target="_blank">
+		    <img src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/cb-app.jpg?t=1601618992&_ga=2.253721806.697039404.1601265108-785699928.1595811284">
+		</a>
+		-->
+	</div>
+	<div class="home-news">
+		<ul class="productGrid productGrid--maxCol1">
+			<li class="product" style="display: inline-block;text-align:center;padding: 10px;">
+				<h2>{{lang 'newsletter.subscribe_3'}}</h2>
+				<form class="form" action="{{urls.subscribe.action}}" method="post">
+					<fieldset class="form-fieldset">
+						<input type="hidden" name="action" value="subscribe">
+						<input type="hidden" name="nl_first_name" value="bc">
+						<input type="hidden" name="check" value="1">
+						<div class="form-field">
+							<label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+							<div class="form-prefixPostfix wrap">
+								<input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+								<input style="border: 1px solid #ff2a00;background-color: #ff2a00;" class="button form-prefixPostfix-button--postfix" type="submit" value="{{lang 'newsletter.subscribe_submit_2'}}">
+							</div>
+							{{#if settings.show_newsletter_summary }}
+							<div class="footer-newsletter-summary">{{settings.newsletter_summary}}</div>
+							{{/if}}
+						</div>
+					</fieldset>
+				</form>
+		</ul>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		setInterval(function(){
+			$("a:contains('Widget is deactivated')").hide();
+		},3000);
+    });
+	$("#choose-reward-click").click(function() {
+	    window.open('https://christopherbean.com/rewards-program/', '_blank');
+	});
+</script>
+{{/partial}}
+{{> layout/base}}

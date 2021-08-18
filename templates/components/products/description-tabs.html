@@ -1,0 +1,259 @@
+<h1 id="product-category-validator" style="display: none;">{{product.category}}</h1>
+<div class="main-desc">	
+	<div class="desc-title {{first product.category}}">
+		<h2>{{product.title}}</h2>
+		{{{product.description}}}
+	</div>
+	{{#filter product.custom_fields 'Roast Meter' property='name' }}
+	<div class="roast-meter">
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/roast/'}}{{value}}.png"/>
+		</div>
+		<div>
+			<img src="{{cdn '/assets/img/prod-page/roast-meter.png'}}"/>
+			<h3>ROAST METER</h3>
+			<p>This roast color meter provides a great reference in analyzing the roast degree of your coffee, giving you a measure of its consistency.</p>
+		</div>
+	</div>
+	{{else}}{{/filter}}
+	<div class="sub-roast">
+		{{#filter product.custom_fields 'Process' property='name' }}
+			<div>
+				<img  src="{{cdn '/assets/img/prod-page/sub-roast-1.png'}}"/>
+				<p class="attr">{{value}}</p>
+				<h3>PROCESS</h3>
+				<p>Most of our coffees undergo the typical coffee processing methods: sun-dried, rack dried, fully washed, wet-hulled, Co2 or Swiss water processed.</p>
+			</div>
+		{{else}}{{/filter}}
+		{{#filter product.custom_fields 'Altitude' property='name' }}
+			<div>
+				<img  src="{{cdn '/assets/img/prod-page/sub-roast-2.png'}}"/>
+				<p class="attr">{{value}}</p>
+				<h3>ALTITUDE</h3>
+				<p>Altitude has a powerful effect on a coffee’s flavor profile. Our Arabica coffees are grown at a range of 3,500 FT to 6,900 FT, depending on the region.</p>
+			</div>
+		{{else}}{{/filter}}
+		{{#filter product.custom_fields 'Origin' property='name' }}
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/sub-roast-3.png'}}"/>
+			<p class="attr">{{value}}</p>
+			<h3>REGION</h3>
+			<p>We source our beans from some of the world’s best coffee-producing regions such as Indonesia, Central and South America, Africa, and the Caribbean.</p>
+		</div>
+		{{else}}{{/filter}}
+	</div>
+	
+	{{#filter product.category "All Coffee"}}
+	<div class="prodpage-map">
+		<img  src="{{cdn '/assets/img/prod-page/map.png'}}"/>
+	</div>
+	
+	
+	<div class="brewing-method">
+		<h2>BREWING METHODS</h2>
+		<div class="brewing-step">
+			<div>
+				<img  src="{{cdn '/assets/img/prod-page/method-1.png'}}"/>
+				<p>DRIP</p>
+			</div>
+			<div>
+				<img  src="{{cdn '/assets/img/prod-page/method-2.png'}}"/>
+				<p>POUR OVER</p>
+			</div>
+			<div>
+				<img  src="{{cdn '/assets/img/prod-page/method-3.png'}}"/>
+				<p>PRESS POT</p>
+			</div>
+			<div>
+				<img  src="{{cdn '/assets/img/prod-page/method-4.png'}}"/>
+				<p>COLD BREW</p>
+			</div>
+		</div>
+	</div>
+
+	{{/filter}}
+	
+	{{#filter product.custom_fields 'Roast Meter' property='name' }}
+		{{#if value "==" "roast-428"}}
+			<div class="other-detail">
+				<h2>OTHER DETAILS</h2>
+				<div id="arabica-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-1.png'}}"/>
+					<p>100% ARABICA COFFEE</p>
+				</div>
+				<div id="guarantee-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-2.png'}}"/>
+					<p>CHRISTOPHER BEAN FRESH ROAST GUARANTEE</p>
+				</div>
+				<div id="alwaysroasted-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-3.png'}}"/>
+					<p>ALWAYS ROASTED TO ORDER</p>
+				</div>
+				<div id="size-available-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-4.png'}}"/>
+					<p>AVAILABLE IN <br> 12oz,2lb,5lb</p>
+				</div>
+				<div id="grind-available-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-5.png'}}"/>
+					<p>AVAILABLE IN<br/> WHOLE BEAN, GROUND and  PERK PRESS COARSE</p>
+				</div>
+				<div id="type-available-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-6.png'}}"/>
+					<p>AVAILABLE IN REGULAR OR DECAFFEINATED</p>
+				</div>
+				<div id="sugar-free-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-7.png'}}"/>
+					<p>SUGAR-FREE</p>
+				</div>
+				<div id="fat-free-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-8.png'}}"/>
+					<p>FAT-FREE</p>
+				</div>
+				<div id="GMO-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-9.png'}}"/>
+					<p>ONLY NON-GMO FLAVORINGS WERE USED</p>
+				</div>
+			</div>
+		{{else}}
+			<div class="other-detail">
+				<h2>OTHER DETAILS</h2>
+				<div id="arabica-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-1.png'}}"/>
+					<p>100% ARABICA COFFEE</p>
+				</div>
+				<div id="guarantee-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-2.png'}}"/>
+					<p>CHRISTOPHER BEAN FRESH ROAST GUARANTEE</p>
+				</div>
+				<div id="alwaysroasted-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-3.png'}}"/>
+					<p>ALWAYS ROASTED TO ORDER</p>
+				</div>
+				<div id="size-available-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-4.png'}}"/>
+					<p>AVAILABLE IN <br> 12oz,2lb,5lb</p>
+				</div>
+				<div id="grind-available-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-5.png'}}"/>
+					<p>AVAILABLE IN<br/> WHOLE BEAN, GROUND and  PERK PRESS COARSE</p>
+				</div>
+				<div id="type-available-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-6.png'}}"/>
+					<p>AVAILABLE IN SWISS WATER PROCESS DECAF</p>
+				</div>
+				<div id="sugar-free-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-7.png'}}"/>
+					<p>SUGAR-FREE</p>
+				</div>
+				<div id="fat-free-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-8.png'}}"/>
+					<p>FAT-FREE</p>
+				</div>
+				<div id="GMO-detail">
+					<img src="{{cdn '/assets/img/prod-page/detail-9.png'}}"/>
+					<p>ONLY NON-GMO COFFEE</p>
+				</div>
+			</div>
+		{{/if}}
+	{{/filter}}
+
+
+	{{#filter product.category "All Coffee"}}
+
+	<div class="featured-photo">
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/featured-photo-1.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/featured-photo-2.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/featured-photo-3.png'}}"/>
+		</div>
+	</div>
+	
+	
+	
+	
+	{{/filter}}
+	
+	{{#filter product.category "Tea"}}
+	
+		
+	<div class="featured-photo">
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/tea-feat-1.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/tea-feat-2.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/tea-feat-3.png'}}"/>
+		</div>
+	</div>
+	{{/filter}}
+		
+	{{#filter product.category "Merchandise/Coffee Grinders"}}
+	
+		
+	<div class="featured-photo">
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/grinder-feat-1.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/grinder-feat-2.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/grinder-feat-3.png'}}"/>
+		</div>
+	</div>
+	{{/filter}}
+	{{#filter product.category "Merchandise/Coffee Filters"}}
+			
+	<div class="featured-photo">
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/filter-feat-1.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/filter-feat-2.png'}}"/>
+		</div>
+		<div>
+			<img  src="{{cdn '/assets/img/prod-page/filter-feat-3.png'}}"/>
+		</div>
+	</div>
+	{{/filter}}
+	
+	
+	
+	<div class="free-shipping">
+		<img src="{{cdn '/assets/img/prod-page/free-ship-bg.png'}}"/>
+		<div>
+			<h2>Free Shipping</h2>
+			<h3>For orders $60  or more</h3>
+		</div>
+	</div>
+	
+<div class="earn-points">
+		<h2>Shop . Earn . Save</h2>
+		<div style="border-top:1px solid #e55942;width:20%;margin:30px auto;display:block"></div>
+		<div>
+		<img src="{{cdn '/assets/img/prod-page/point-1.png'}}"/>
+		<h3>Open An Account</h3>
+		<p>It's easy and there's no purchase required.</p>
+		</div>
+		<div>
+		<img src="{{cdn '/assets/img/prod-page/point-2.png'}}"/>
+		<h3>Earn Points</h3>
+		<p>Earn 1 point for every $1 you spend with us.</p>
+		</div>
+		<div>
+		<img src="{{cdn '/assets/img/prod-page/point-3.png'}}"/>
+		<h3>Choose Reward</h3>
+		<p>Redeem your points for discount coupons.</p>
+		</div>
+		<a href="/login.php?action=create_account">CREATE AN ACCOUNT</a>
+	</div>
+</div>
+<script>
+	
+</script>

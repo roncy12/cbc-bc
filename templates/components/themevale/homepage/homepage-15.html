@@ -1,0 +1,44 @@
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel carousel=carousel layout="layout-1" arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots}}
+    {{/if}}
+    {{{snippet 'home_content'}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+    {{#each shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+<div class="main full">
+    
+    {{> components/themevale/homepage/component/image-collections image-collections="image-collections-25" padding_top="padding-top-50" padding_bottom="padding-bottom-50"}}
+
+    {{> components/themevale/homepage/component/brands-carousel brands-carousel="brands-carousel-4" padding_top="padding-top-0" padding_bottom="padding-bottom-50"}}
+
+    {{> components/themevale/homepage/component/ajax-products-by-category-id category_id=175 has_count_down="Dec 19 2019, 18:00:00" padding_top="padding-top-0" padding_bottom="padding-bottom-50"}}
+
+    {{> components/themevale/homepage/component/ajax-products-by-category-id-2 category_id=167 padding_top="padding-top-0" padding_bottom="padding-bottom-50" banner="banner-slide-1"}}
+
+    {{> components/themevale/homepage/component/ajax-products-by-category-id-2 category_id=168 padding_top="padding-top-0" padding_bottom="padding-bottom-50" banner="banner-slide-2"}}
+
+    {{> components/themevale/homepage/component/ajax-products-by-category-id-2 category_id=169 padding_top="padding-top-0" padding_bottom="padding-bottom-50" banner="banner-slide-3"}}
+
+    {{> components/themevale/homepage/component/ajax-products-by-category-id-2 category_id=170 padding_top="padding-top-0" padding_bottom="padding-bottom-50" banner="banner-slide-4"}}
+
+    {{> components/themevale/homepage/component/ajax-products-by-category-id-3 category_id=174 padding_top="padding-top-50" padding_bottom="padding-bottom-50"}}
+
+    {{> components/themevale/homepage/component/image-collections image-collections="image-collections-12" padding_top="padding-top-50" padding_bottom="padding-bottom-50" columns=3 arrows=false dots=false}}
+
+    {{#if blog.recent_posts}}
+        {{> components/themevale/homepage/component/latest-post latest-post="latest-post-1" padding_top="padding-top-0" padding_bottom="padding-bottom-70" blog=blog.recent_posts title=theme_settings.homepage_blog_title description=theme_settings.homepage_blog_description columns=theme_settings.homepage_blog_column blog_show=theme_settings.homepage_blog_limit}}
+    {{/if}}
+
+    {{> components/themevale/homepage/component/instagram-carousel instagram-carousel="instagram-carousel-2" padding_top="padding-top-50" padding_bottom="padding-bottom-70" title-border="no-border" border-top="border-top"}}
+
+    {{> components/themevale/homepage/component/services services="services-4" padding_top="padding-top-0" padding_bottom="padding-bottom-0" border-top="border-top border-bottom" padding_col=theme_settings.customer-service-padding}}
+
+</div>
+{{/partial}}
+{{> layout/base}}

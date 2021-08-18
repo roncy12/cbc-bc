@@ -1,0 +1,157 @@
+{{#or (if this.display_name '===' 'Select Type') (if this.display_name '===' 'Select Grind') (if this.display_name '===' 'Select Size') (if this.display_name '===' 'Choose Size') (if this.display_name '===' 'Reg Or Decaf') (if this.display_name '===' 'Choose Type') (if this.display_name '===' 'Choose Coffee') (if this.display_name '===' 'Pre Paid Subscription') (if this.display_name '===' 'Prepaid Subscription') }}
+
+
+<div class="form-field {{this.display_name}} " data-product-attribute="set-radio">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{ this.display_name }}:
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    {{#each this.values}}
+	<label id="img-test" data-product-attribute-value="{{id}}" class="form-label radio-img" for="attribute_radio_{{../id}}_{{id}}">
+        <input
+            class="form-radio radio-img-test"
+            type="radio"
+            id="attribute_radio_{{../id}}_{{id}}"
+            name="attribute[{{../id}}]"
+            value="{{id}}"
+            {{#if selected}}
+                checked
+                data-default
+            {{/if}}
+            {{#if ../required}}required{{/if}}>
+			{{#is this.label 'Regular'}}
+				<img id="myImg" class="test" onclick="checkRadio();" src="{{cdn '/assets/img/Regular.png'}}" />
+            {{/is}}
+			{{#is this.label 'Decaf'}}
+				<img id="myImg1" onclick="checkRadio1();" src="{{cdn '/assets/img/Decaf.png'}}" />
+            {{/is}}
+            {{#is this.label 'Swiss Water Process Decaf'}}
+				<img id="myImg11" onclick="checkRadio11();" src="{{cdn '/assets/img/swpd.png'}}" />
+            {{/is}}
+            {{#is this.label '12ounce Wholebean'}}
+				<img id="myImgWB" onclick="checkrad10();" src="{{cdn '/assets/img/12ounce-wholebean.png'}}" />
+            {{/is}}
+			{{#is this.label '2lb Wholebean'}}
+				<img id="myImg2" onclick="checkRadio2();" src="{{cdn '/assets/img/2lbWholebean.png'}}" />
+            {{/is}}
+			{{#is this.label '5lb WholeBean'}}
+				<img id="myImg3" onclick="checkRadio3();" src="{{cdn '/assets/img/5lbWholeBean.png'}}" />
+            {{/is}}
+			{{#is this.label 'Universal Drip'}}
+				<img id="myImg4" onclick="checkRadio4();" src="{{cdn '/assets/img/UniversalDrip.png'}}" />
+            {{/is}}
+			{{#is this.label 'Perk or Course'}}
+				<img id="myImg5" onclick="checkRadio5();" src="{{cdn '/assets/img/PerkorCourse.png'}}" />
+            {{/is}}
+			{{#is this.label 'Espresso Fine'}}
+				<img id="myImg6" onclick="checkRadio6();" src="{{cdn '/assets/img/EspressoFine.png'}}" />
+            {{/is}}
+            {{#is this.label '12 Ounce'}}
+            	<img id="myImg7" onclick="checkrad7();" src="{{cdn '/assets/img/12ounce-ground.png'}}" />
+            {{/is}}
+            {{#is this.label '2 Pounds'}}
+            	<img id="myImg8" onclick="checkrad8();" src="{{cdn '/assets/img/2pounds-ground.png'}}" />
+            {{/is}}
+            {{#is this.label '5 Pounds'}}
+            	<img id="myImg9" onclick="checkradio9();" src="{{cdn '/assets/img/5pounds-ground.png'}}" />
+            {{/is}}
+            {{#is this.label 'Wholebean'}}
+            	<img id="myImg12" onclick="checkRad12();" src="{{cdn '/assets/img/wholebeans.png'}}" />
+            {{/is}}
+            {{#is this.label 'Ground Universal Drip'}}
+            	<img id="myImg13" onclick="checkRad13();" src="{{cdn '/assets/img/grounddrip.png'}}" />
+            {{/is}}
+            {{#is this.label 'Perk Press Coarse'}}
+            	<img id="myImg14" onclick="checkRad14();" src="{{cdn '/assets/img/perkpress.png'}}" />
+            {{/is}}
+            {{#is this.label 'Espresso Fines'}}
+            	<img id="myImg15" onclick="checkRad15();" src="{{cdn '/assets/img/espressofines.png'}}" />
+            {{/is}}
+            {{#is this.label '4 Oz Bottle'}}
+                <img id="myImg16" onclick="checkRad16();" src="{{cdn '/assets/img/4oz.png'}}" />
+            {{/is}}
+            {{#is this.label '8 Oz Bottle'}}
+                <img id="myImg17" onclick="checkRad17();" src="{{cdn '/assets/img/8oz.png'}}" />
+            {{/is}}
+            {{#is this.label '16 Oz Bottle'}}
+                <img id="myImg18" onclick="checkRad18();" src="{{cdn '/assets/img/16oz.png'}}" />
+            {{/is}}
+            {{#is this.label 'Flavored'}}
+                <img id="myImg19" onclick="checkRad19();" src="{{cdn '/assets/img/flavored-gift.png'}}" />
+            {{/is}}
+            {{#is this.label 'Regular Non Flavored'}}
+                <img id="myImg20" onclick="checkRad20();" src="{{cdn '/assets/img/regular-gift.png'}}" />
+            {{/is}}
+            {{#is this.label 'Mix'}}
+                <img id="myImg21" onclick="checkRad21();" src="{{cdn '/assets/img/mix-gift.png'}}" />
+            {{/is}}
+            
+            <!--Pre Paid Subscription-->
+            {{#is this.label 'Send every 1 week'}}
+				<img id="week1Img" class="weekly-data" onclick="weekRadio1();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 2 weeks'}}
+				<img id="week2Img" class="weekly-data" onclick="weekRadio2();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 3 weeks'}}
+				<img id="week3Img" class="weekly-data" onclick="weekRadio3();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 4 weeks'}}
+				<img id="week4Img" class="weekly-data" onclick="weekRadio4();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 5 weeks'}}
+				<img id="week5Img" class="weekly-data" onclick="weekRadio5();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 6 weeks'}}
+				<img id="week6Img" class="weekly-data" onclick="weekRadio6();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            
+            {{#is this.label 'Send every 1 month'}}
+				<img id="month1Img" class="monthly-data" onclick="monthRadio1();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 2 months'}}
+				<img id="month2Img" class="monthly-data" onclick="monthRadio2();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 3 months'}}
+				<img id="month3Img" class="monthly-data" onclick="monthRadio3();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 4 months'}}
+				<img id="month4Img" class="monthly-data" onclick="monthRadio4();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 5 months'}}
+				<img id="month5Img" class="monthly-data" onclick="monthRadio5();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+            {{#is this.label 'Send every 6 months'}}
+				<img id="month6Img" class="monthly-data" onclick="monthRadio6();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+            {{/is}}
+		</label>
+    {{/each}}
+
+</div>
+
+{{ else }}
+    {{#or (if this.display_name '===' 'Subscribe & Save') }}
+        <!-- do nothing -->
+    {{else}}
+        <div class="form-field" data-product-attribute="set-select">
+            <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}">
+                {{ this.display_name }}:
+            
+                {{#if required}}
+                    <small>{{lang 'common.required'}}</small>
+                {{/if}}
+            </label>
+            
+            <select class="form-select form-select--small" name="attribute[{{this.id}}]" id="attribute_{{id}}" {{#if required}}required{{/if}}>
+                <option value="">{{lang 'products.choose_options'}}</option>
+                    {{#each this.values}}
+                        <option data-product-attribute-value="{{id}}" value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+                    {{/each}}
+            </select>
+        </div>
+    {{/or}}
+ {{/or}}

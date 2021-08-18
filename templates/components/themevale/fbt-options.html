@@ -1,0 +1,8 @@
+{{#if product.options}}
+<div class="themvale-fbt-toggle-options">Choose Options</div>
+<div class="themvale-fbt-detail-options" data-fbt-option-change>
+{{#each product.options}}
+{{{dynamicComponent 'components/themevale/options'}}}
+{{/each}}
+</div>
+{{/if}}

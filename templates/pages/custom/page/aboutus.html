@@ -1,0 +1,57 @@
+{{#partial "page"}}
+<div class="themevale_breadcrumb">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <h1 class="page-heading">{{ page.title }}</h1>
+</div>
+<main class="page themevale_faq">
+    <p>{{{page.content}}}</p>
+    <div class="page-content">
+       <script>
+function createCart(url, cartItems) {
+   return fetch(url, {
+       method: "POST",
+       credentials: "same-origin",
+       headers: {
+           "Content-Type": "application/json"},
+       body: JSON.stringify(cartItems),
+   })
+  .then(data => console.log(JSON.stringify(data)))
+.catch(error => console.error(error));	
+
+ };
+ 
+ jQuery(document).ready(function(){
+ 	console.log('init');
+ jQuery('.addtocart').click(function(e){
+	e.preventDefault();
+		console.log('init');
+		
+	createCart('/api/storefront/carts', {
+   "lineItems": [
+   {
+       "quantity": 1,
+       "productId": 86
+   },
+   {
+       "quantity": 1,
+       "productId": 88
+   }
+   ]}
+);
+
+		
+		
+		
+	
+
+ });
+ 
+});
+</script>
+
+<a class="addtocart" href="#">addtocart</a>
+    </div>
+</main>
+{{/partial}}
+
+{{> layout/base}}

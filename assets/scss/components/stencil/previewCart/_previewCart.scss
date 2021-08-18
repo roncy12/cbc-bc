@@ -1,0 +1,187 @@
+// =============================================================================
+// PREVIEW CART (CSS)
+// =============================================================================
+//
+// 1. Override server-generated inline-css
+//
+// -----------------------------------------------------------------------------
+
+.previewCart {
+    width: 100%;
+    vertical-align: top;
+    display: inline-block;
+    .productView {
+        padding: 0;
+        font-size: 0;
+        display: block;
+        margin: 0 0 30px 0;
+    }
+    .previewCartCheckout {
+        padding: 0;
+        margin: 0 auto;
+        display: block;
+        font-size: 12px;
+        max-width: 400px;
+        text-align: center;
+        background-color: transparent;
+    }
+    .productView-image {
+        width: 30%;
+        padding: 0;
+        min-height: auto;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .productView-details {
+        width: 70%;
+        margin-bottom: 0;
+        padding-top: 20px;
+        padding-left: 15px;
+        font-size: $body-fontSize;
+        display: inline-block;
+        vertical-align: top;
+        .productView-brand {
+            font-size: 12px;
+            line-height: 1;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: stencilColor('color-textHeading');
+        }
+        .productView-title {
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: stencilColor('color-textHeading');
+        }
+        .productView-price {
+            font-size: 14px;
+            line-height: 1;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            color: stencilColor('color-textHeading');
+        }
+        .productView-info {
+            margin-bottom: 0px;
+            .productView-info-name {
+                min-width: 65px;
+                font-weight: 500;
+                color: stencilColor('color-textHeading'); 
+            }
+            .productView-info-value {
+                text-transform: capitalize;
+            }
+            + .productView-info {
+                margin-top: 10px;
+            }
+        }
+    }
+    @include breakpoint('small') {
+        .productView-image {
+            width: 210px;
+        }
+        .productView-details {
+            width: calc(100% - 210px);
+        }
+    }
+    @media (min-width: 768px) {
+        .productView {
+            margin: 0;
+            width: 60%;
+            float: left;
+            padding: 0 30px 0 0;
+        }
+        .previewCartCheckout {
+            width: 40%;
+            margin: 0;
+            float: right;
+            max-width: none;
+        }
+    }
+    @include breakpoint('medium') {
+        .productView {
+            width: 67%;
+            padding: 0 50px 0 0;
+        }
+        .previewCartCheckout {
+            width: 33%;
+        }
+        .productView-details {
+            padding-left: 20px;
+        }
+    }
+}
+
+.previewCartCheckout {
+    text-align: center;
+    .button {
+        width: 100%;
+        + .button {
+            margin-left: 0;
+            margin-top: 10px;
+        }
+    }
+    .proceed--button {
+        margin-bottom: 0;
+        @include breakpoint('medium') {
+            padding: 19px 15px 18px 15px;
+        }
+    }
+    p[data-cart-quantity] {
+        margin-bottom: 14px;
+    }
+    .previewCartAction-checkoutMultiple {
+        margin: 15px 0 12px 0;
+    }
+    @media (min-width: 1025px) {
+        .button {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
+
+.previewCartCheckout-additionalCheckoutButtons {
+    p {
+        display: block;
+        margin: 5px 0;
+        float: none !important;
+    }
+}
+
+.previewCartCheckout-subtotal {
+    margin: 15px 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #e0dfdf;
+    border-bottom: 1px solid #e0dfdf;
+    .previewCartCheckout-price {
+        display: block;
+        font-size: 24px;
+        margin-top: 10px;
+        line-height: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: stencilColor('color-textHeading');
+    }
+}
+
+.suggestiveCart {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e6e6e6;
+    > h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0 0 15px 0;
+    }
+    .productGrid {
+        @media (min-width: 1025px) {
+            .product {
+                width: 20%;
+            }
+        }
+    }
+}

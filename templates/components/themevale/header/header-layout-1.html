@@ -1,0 +1,114 @@
+<div class="header-z-block">
+    <div class="forgot-psw-block">
+    <p>30% Off on Clearance Sale Items | <a href="/clearance/">Add to cart to view discount</a></p>
+    </div>
+</div>
+<script>
+    $( "#password-close" ).click(function() {
+      $( ".header-z-block" ).fadeOut( "slow" );
+      
+      document.cookie = "cookieBlock=close";
+    });
+    function getCookie(name) {
+        // Split cookie string and get all individual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+        
+        // Loop through the array elements
+        for(var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+            
+            /* Removing whitespace at the beginning of the cookie name
+            and compare it with the given string */
+            if(name == cookiePair[0].trim()) {
+                // Decode the cookie value and return
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        
+        // Return null if not found
+        return null;
+    }
+    
+    function checkCookie() {
+        // Get cookie using our custom function
+        var cookieVal = getCookie("cookieBlock");
+        
+        if(cookieVal === "close") {
+            //console.log("meron so close");
+            $( ".header-z-block" ).hide();
+        } else {
+            //console.log("walang cookie");
+            $( ".header-z-block" ).show();
+        }
+    }
+    $( document ).ready(function() {
+        checkCookie();
+    });
+</script>
+<header class="header themevale_header-layout-1">  
+    <div class="themevale_header-PC">
+        <div class="themevale_header-middle">
+            {{> components/themevale/header/header-middle}}
+        </div>
+        <div class="themevale_header-bottom menu-sticky">
+            <div class="logo-wrapper">
+                <div class="header-sticky-logo">
+                    <a href="{{urls.home}}">
+                        {{#if settings.store_logo.image}}
+                            <img class="header-logo-image lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn '/assets/img/cb-favicon.png'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                        {{else}}
+                            <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                        {{/if}}
+                    </a>
+                </div>
+            </div>
+            {{> components/common/navigation-menu}}
+            {{> components/common/sticky-cart-search}}
+        </div>
+    </div>
+    <div class="themevale_header-Mobile">
+        {{> components/themevale/header/header-mobile}}
+    </div>
+</header>
+
+<div id="black-friday-banner" style="display:none;"><img src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/cb-bfcm-2020-small-banner.png?t=1606448453&_ga=2.165116408.653265488.1606178636-785699928.1595811284"></div>
+
+<!-- The Modal -->
+<div id="myModalz" class="modalz">
+
+  <!-- Modal content -->
+  <div class="modal-contentz">
+    <span class="closez">&times;</span>
+    <img src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/cb-bcfm-pop-up.png?t=1606449622&_ga=2.72964948.653265488.1606178636-785699928.1595811284">
+  </div>
+
+</div>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModalz");
+
+// Get the button that opens the modal
+var btn = document.getElementById("subscription-main");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("closez")[0];
+
+// When the user clicks on the button, open the modal
+//btn.onclick = function() {
+//  modal.style.display = "block";
+//}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>

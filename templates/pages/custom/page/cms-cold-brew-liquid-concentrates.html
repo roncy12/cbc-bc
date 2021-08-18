@@ -1,0 +1,300 @@
+{{#partial "page"}}
+<div class="themevale_breadcrumb">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <h1 class="page-heading">{{ page.title }}</h1>
+</div>
+<main class="page">
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+    <div class="page-content">
+        {{#replace '%%Syndicate%%' page.content}}
+            {{> components/page/rss_feed}}
+        {{else}}
+            {{{page.content}}}
+			
+<div class="cms-cold-brew-liquid-concentrates">
+	<div class="banner-section cms-section">
+		<div class="section-content">
+			<div class="txt-content">
+				<h1>Cold Brew Coffee <br>
+				Concentrate</h1>
+				<p>Our finest Liquid Coffee Concentrate, from high-grown, 100% Arabica coffee beans, roasted in small batches, brings you instant gratification without the wait and mess of conventional coffee brewing. Who can resist a frosty glass of iced coffee?</p>
+				<a class="cta-btn shop-btn" href="/collections/coffee-concentrate-1" >SHOP ALL</a>
+			</div>
+			<div class="img-content">
+				<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'assets/img/pages/cms/cblc-section-1-img-1.png' }}" />
+			</div>
+		</div>
+	</div>
+	
+	<div class="products-section cms-section">
+		<div class="section-content">
+			<div class="text-banner">Receive an <strong>EXTRA 10% off</strong> with code <strong><span class="extra-clr">XTRA10</span>, plus FREE SHIPPING!</strong></div>
+			
+			<div class="section-title">
+				
+				<div class="title-txt">
+				<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'assets/img/pages/cms/cblc-section-2-icon-1.png' }}" />
+				<h2>Featured Coffee Concentrates</h2>
+				
+				</div>
+				<p class="save-txt">SAVE UP 30% <span class="divider">|</span> FREE SHIPPING</p>
+			</div>
+			<script>
+				jQuery(document).ready(function(){
+					// qty function
+					jQuery('[data-qty]').click(function(){
+						// remove _active flag
+						jQuery(this).parent('.product-qty-box').find('[data-qty]').each(function(){
+							jQuery(this).removeClass('_active');
+						});
+						// add _active flag and qty
+						jQuery(this).addClass('_active');
+						jQuery('[name="qty"]').val(jQuery(this).data('qty'));
+					});
+					
+					// reload page 
+					jQuery('[data-addtocart-action]').click(function(){
+						//setTimeout(function(){ location.reload(); }, 2000);
+					});
+				});
+			</script>
+			<div class="item-list">
+			
+			{{#each (split	"LIQ-FRST-8Z::French Roast Iced Coffee Cold Brew Or Hot Coffee Concentrate Bottle::19.95|LIQ-COL-DE-8Z::Decaffeinated Colombian Iced Coffee Cold Brew Or Hot Coffee Concentrate Bottle::19.95|LIQ-COL-701-8Z::Colombian Supremo Cold Brew Iced Coffee Hot Coffee Concentrate Bottle::19.95|LIQ-FVAN-8Z::French Vanilla Cold Brew Iced Coffee or Hot Coffee Concentrate Bottle::19.95|LIQ-CHORNG-8Z::Chocolate Indulgence Cold Brew Iced Coffee or Hot Coffee Concentrate Bottle::19.95|LIQ-CMACH-8Z::Caramel Cold Brew Iced Coffee Hot Coffee Concentrate Bottle::19.95" "|") }}
+				
+				{{#eachIndex (split @this '::') }}
+					{{#if index '==' 0 }}
+						{{assignVar 'product_sku' item}} 
+					{{/if}}				 
+					{{#if index '==' 1 }}
+						{{assignVar 'product_name' item}} 
+					{{/if}}
+					{{#if index '==' 2 }}
+						{{assignVar 'product_price' item}} 
+					{{/if}}				
+				{{/eachIndex}}
+				
+				<div class="list-item">
+					<div class="product-data" >
+						<div class="product-info">
+							<label class="product-img"><img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'assets/img/pages/cms/cblc-section-2-p-img-1.jpg' }}" /></label>
+							<label class="product-subtxt">8oz ( makes 48 cups)</label>
+							<label class="product-name">{{getVar 'product_name'}}</label>
+							
+						</div>
+						<div class="product-addtocart">
+							<label class="product-price">${{#replace '$' (money (toFloat (getVar 'product_price')) 2 ',' '.') }}{{/replace}}</label>
+								<div class="product-qty-box">
+									<div class="item-qty qty-1 _active" data-qty="1" >
+										<span class="qty-label"> 1 Bottle</span><br><span class="qty-price">$19.95</span>
+									</div>
+									<div class="item-qty qty-2 " data-qty="2" >
+										<span class="qty-label"> 2 Bottles</span><br><span class="qty-price"><span class="old-price">$19.95</span> $17.95 each</span><br><span class="qty-save">SAVE  20%</span>
+									</div>
+									<div class="item-qty qty-3 " data-qty="3" >
+										<span class="qty-label"> 3 Bottles</span><br><span class="qty-price"><span class="old-price">$19.95</span> $16.95 each</span><br><span class="qty-save">SAVE  25%</span>
+									</div>
+									<div class="item-qty qty-4 " data-qty="4" >
+										<span class="qty-label"> 4 Bottles</span><br><span class="qty-price"><span class="old-price">$19.95</span> $15.95 each</span><br><span class="qty-save">SAVE  30%</span>
+									</div>
+								</div>
+								<form data-addtocart-form  method="post" action="/cart.php" enctype="multipart/form-data" data-cart-item-add>
+									<input type="hidden" name="action" value="add" />
+									<input type="hidden" name="sku" value="{{getVar 'product_sku'}}" />
+									<input type="hidden" name="qty" value="1" />
+									<input data-addtocart-action class="btn-addtocart" type="submit" value="Add to Cart">
+								</form>
+								<div class="product-shipping">
+									FREE SHIPPING
+								</div>
+						</div>
+							
+					</div>
+				</div>
+			{{/each}}	
+			</div>
+		</div>
+	</div>
+	
+	<div class="section-3 cms-section" >
+		<div class="section-content" >
+			<div class="section-item">
+				<div class="img-content">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-3-img-1.png' }}" />
+				</div>
+				<div class="txt-content">
+					<h2 class="main-txt">Regular Cold Brew</h2>
+					<p>True coffee flavor just cannot be imitated. Whether your taste leans to robust or smoothly mild, only real coffee savor can satisfy. When crushed and infused with the purest of water, our beans give the rich, audacious essence of what coffee should be! A straight shot to taste bud heaven!</p>
+					<div class="h-action-btn">
+					<a class="h-cta-btn" href="/cold-brew-concentrates/regular-non-flavored-cold-brew-coffee-concentrate/">SHOP REGULAR</a>
+					</div>
+				</div>		
+				
+			</div>
+			<div class="section-item">
+				<div class="img-content">
+					<img class="img-responsive lazyload "  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-3-img-2.png' }}" />
+				</div>		
+				<div class="txt-content ">
+					<h2 class="main-txt">Flavored Cold Brew</h2>
+					<p>Why limit deliciousness? Chilled, flavored coffees top off the perfectly orchestrated brunch or holiday gathering. Expanding horizons, Christopher Bean offers a variety of Cold Brew delightfulness to jazz up your coffee experience in every setting! Be bold and introduce your palate to a wide, open world of new flavor fancies!</p>
+					<div class="h-action-btn">
+					<a class="h-cta-btn" href="/cold-brew-concentrates/flavored-cold-brew-coffee-concentrate/">SHOP FLAVORED</a>
+					</div>
+				</div>	
+					
+			</div>
+		</div>
+	</div>	
+	
+	<div class="section-4 cms-section" >
+		<div class="section-content" >
+			<div class="section-text">	
+				<h2>Super-Fast “Coffee on the Rocks!”</h2>
+				<p>Hearty coffee flavor with a silky-smooth aftertaste is our signature style. This super-fast Cold Brew Coffee Concentrate will hook you forever! Life is fast paced and in the time it takes to set up the coffee pot, you can be sipping a fresh glass of glacier java!</p>
+			</div>
+			
+			<ul class="section-item-list" >
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-4-img-1.jpg' }}" />
+					<div class="txt-content">
+						<h2 class="main-txt">Step01</h2>
+						<p>Fill a large glass with ice</p>
+					</div>
+				</li>
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-4-img-2.jpg' }}" />
+					<div class="txt-content">
+						<h2 class="main-txt">Step02</h2>
+						<p>Add almond, soy or regular milk</p>
+					</div>
+				</li>
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-4-img-3.jpg' }}" />
+					<div class="txt-content">
+						<h2 class="main-txt">Step03</h2>
+						<p>Pour 1 to 2 Teaspoons of liquid java, as you like</p>
+					</div>
+				</li>
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-4-img-4.jpg' }}" />
+					<div class="txt-content">
+						<h2 class="main-txt">Step04</h2>
+						<p>Use your favorite sweetener and mix!</p>
+					</div>
+				</li>				
+			</ul>	
+		</div>
+	</div>	
+
+	<div class="section-5 cms-section" >
+		<div class="section-content" >
+			<div class="section-item">
+				<div class="img-content">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-5-img-1.jpg' }}" />
+				</div>
+				<div class="txt-content">
+					<h2 class="main-txt">Christopher Bean Coffee™ Brand <br>Liquid Coffee Concentrate.</h2>
+					<p>Here at Christopher Bean Coffee, your desires drive our competitive nature to produce products that fulfill your deepest coffee dreams. You see, for us, coffee isn’t just another drink. It’s an atmosphere. Aroma, color, taste……..all move together in making great coffee memories. Mixing a glass alone, or with friends and family, Liquid Coffee Concentrate takes the work out of enjoying really great coffee. Your time is better spent living your best life, not brewing coffee!</p>
+				</div>		
+			</div>
+		</div>
+	</div>	
+	
+	<div class="section-6 cms-section" >
+		<div class="section-content" >
+			<div class="section-text">	
+
+				<h2>Cold Brew? Who Knew? Christopher Bean!</h2>
+				<p>Incredible tasting coffee is now at your finger tips with unlimited possibilities.</p>
+			</div>
+			
+			<ul class="section-item-list" >
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-6-img-1.jpg' }}" />
+					<div class="txt-content">
+						<h2 class="main-txt">QUICK AND EASY</h2>
+						<p>No More Prep or Brewing Time. Pour it and Go! Say Goodbye to Coffee Filters and Left-over Grounds.</p>
+					</div>
+				</li>
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-6-img-2.jpg' }}" />
+					<div class="txt-content">
+						<h2 class="main-txt">PREMIUM QUALITY</h2>
+						<p>Nothing Added. 100% Coffee Bean Extract. Our beans are sourced from some of the best coffee-producing regions of the world. Altitude has a powerful effect on a coffee’s flavor profile. Our beans are grown at a range of 3,500 FT to 6,900 FT depending on the region.</p>
+					</div>
+				</li>
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-6-img-3.jpg' }}" />
+					<div class="txt-content">
+						<h2 class="main-txt">NO LIMITS</h2>
+						<p>Now, Coffee is Always Available Whether You Need One Cup or Twenty! You Decide – Subtle or Strong….Flavor at Your Fingertips! Super-fast, Super-ready for You to Explore Your Favorite Coffee Experience!</p>
+					</div>
+				</li>	
+			</ul>	
+		</div>
+	</div>	
+
+	<div class="section-7 cms-section" >
+		<div class="section-content" >
+			<div class="section-text">	
+				<h2>Servings Per Bottle</h2>
+			</div>
+			
+			<ul class="section-item-list" >
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-7-img-1.png' }}" />
+				</li>
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-7-img-2.png' }}" />
+				</li>
+				<li class="section-item">
+					<img class="img-responsive lazyload"  data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/pages/cms/cblc-section-7-img-3.png' }}" />
+				</li>	
+			</ul>	
+		</div>
+	</div>	
+
+	<div class="section-8 cms-section" >
+		<div class="section-content" >
+	        <div class="review-stamped">        
+                <div id="stamped-main-widget" data-widget-style="standard">&nbsp;</div>
+            </div>
+		</div>
+	</div>	
+
+	<div class="section-9 cms-section" >
+		<div class="section-content" >
+			<div class="section-text">	
+				<h2>Start brewing with us today.</h2>
+				<p>Email us at<br><a href="mailto:concentrate@christopherbean.com">concentrate@christopherbean.com</a></p>
+			</div>
+		</div>
+	</div>	
+
+
+</div>			
+			
+        {{/replace}}
+    </div>
+    {{#if page.feed}}
+        <ul>
+            {{#each page.feed}}
+                <li>
+                    <h6><a href="{{url}}" target="_blank" rel="noopener">{{title}}</a></h6>
+                    <p>{{content}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</main>
+{{/partial}}
+{{> layout/base}}

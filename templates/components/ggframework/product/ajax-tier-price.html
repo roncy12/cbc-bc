@@ -1,0 +1,15 @@
+{{#if product.bulk_discount_rates.length}}
+	{{#and product.price.price_range (if ../theme_settings.price_ranges '==' true)}}
+	{{else}}
+		{{#if product.price.with_tax }}
+			{{> components/ggframework/product/ajax-tier-price/content product_price = product.price.with_tax.value }}
+		{{/if}}
+		{{#if product.price.without_tax }}
+			{{> components/ggframework/product/ajax-tier-price/content product_price = product.price.without_tax.value  product_currency = (first (split product.price.without_tax.formatted '') 1)}}
+		{{/if}}
+	{{/and}}
+{{/if}}
+
+
+
+

@@ -1,0 +1,1475 @@
+---
+products:
+    featured:
+        limit: 6
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject "product_currentstock" product.stock_level}}
+{{#partial "page"}}
+
+
+<div class="container">
+<div class="themevale_breadcrumb">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+</div>
+<div class="page"> 
+    <main class="page-content" id="product-listing-container">
+        {{#each product.shipping_messages}}
+            {{> components/common/alert-info message}}
+        {{/each}}
+        <div class="themevale_sidebar-mobile-wrapper">
+            <div class="item item-iconSidebar text-left">
+                <div class="themevale_sidebar-mobile">
+                    <span class='text'>sidebar:</span>
+                    <svg class="icon"><use xlink:href='#sidebar'></use></svg>
+                </div>
+            </div>
+        </div>
+        <div itemscope itemtype="http://schema.org/Product">
+            {{> components/products/product-view settings=../settings schema=true }}
+
+            {{#if product.related_products}}
+                <section class="productRelated padding-top-30 padding-bottom-50 border-top" id="product-related" data-product-related>
+                    <h2 class="related-heading no-border">{{lang 'products.related_products'}}</h2>
+                    {{> components/products/carousel settings=../settings products=product.related_products columns=4 arrows=true dots=false list="Related Product"}}
+                </section>
+            {{/if}}
+            
+            <div class="review-stamped">        
+                <div id="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-title="Customer Reviews" data-style-color-title="#2f2f2b" data-style-color-text="#2f2f2b" data-style-color-link="#2f2f2b" data-fill-empty="true" data-random="? string:Customer Reviews ?" data-product-image="true"></div>
+            </div>
+        </div>
+    </main>
+</div>
+</div>
+
+<script>
+    $( document ).ready(function() {
+        if($("#subscription-panel").length) {
+           //do nothing
+        } else {
+             $("#yup-sub").addClass("inactive");
+        }
+        
+        //secura
+        var prodTitleCheck = document.getElementById("productTitleChecker").innerText;
+            
+        if ( prodTitleCheck.includes('Secura French Press') || prodTitleCheck.includes('SECURA FRENCH PRESS') ) {
+            $(".custom-buttons-add-to").hide();
+        }
+    });
+    
+    //hide other details
+        var roastedElm = 'Always Roasted to order',
+            arabicaElm = '100% Arabica Coffee',
+            freshElm = 'Comes with the Christopher Bean Fresh Roast Guarantee',
+            ounceElm = 'One 12 ounce bag of coffee',
+            availElm = 'Available in whole bean, ground, and percolator coarse',
+            availTwoElm = 'Available in regular or decaffeinated',
+            sugarElm = 'Sugar-free',
+            fatElm = 'Fat-free',
+            gmoElm = 'Only Non-GMO flavorings are used',
+            gmoTwoElm = 'Only Non-GMO flavorings are use',
+            regexArabica = new RegExp(arabicaElm, 'g'),
+            regexFresh = new RegExp(freshElm, 'g'),
+            regexOunce = new RegExp(ounceElm, 'g'),
+            regexAvail = new RegExp(availElm, 'g'),
+            regexAvailTwo = new RegExp(availTwoElm, 'g'),
+            regexSugar = new RegExp(sugarElm, 'g'),
+            regexFat = new RegExp(fatElm, 'g'),
+            regexGmo = new RegExp(gmoElm, 'g'),
+            regexGmoTwo = new RegExp(gmoTwoElm, 'g'),
+            regexRoasted = new RegExp(roastedElm, 'g');
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexRoasted, '<span style="display:none">' + roastedElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexArabica, '<span style="display:none">' + arabicaElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexFresh, '<span style="display:none">' + freshElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexOunce, '<span style="display:none">' + ounceElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexAvail, '<span style="display:none">' + availElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexAvailTwo, '<span style="display:none">' + availTwoElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexSugar, '<span style="display:none">' + sugarElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexFat, '<span style="display:none">' + fatElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexGmo, '<span style="display:none">' + gmoElm + '</span>');
+        });
+        
+        $('.main-desc .desc-title p').html(function(i, html){
+          return html.replace(regexGmoTwo, '<span style="display:none">' + gmoTwoElm + '</span>');
+        });
+
+    //Disable extra buttons
+    var categGet = document.getElementById("product-category-validator").innerText;
+    
+    if( categGet.includes('Coffee Collections') || categGet.includes('Coffee Gear') || categGet.includes('Coffee Subscription Gifts') || categGet.includes('Clearance') ) {
+        $(".custom-buttons-add-to").hide();
+    }
+    
+    if( categGet.includes('Gifts/Coffee Subscription Gifts') ) {
+        if($(".form-field.Select.Grind").length){
+            $(".form-field.Select.Grind").hide();
+        }
+        $(".additional-options .form-increment .form-input--incrementTotal").val('3');
+    }
+
+    if( $('label:contains("Reg Or Decaf:")') ) {
+        $('label:contains("Reg Or Decaf:")').text("Regular or Decaf:");
+    }
+
+    var x = document.getElementById("product-category-validator").innerText;
+    var frenchToast = document.getElementById("productTitleChecker").innerText;
+    var texasMaple = document.getElementById("productTitleChecker").innerText;
+
+    /*if((x == "All Coffee/Flavored Coffee") || (x == "All Coffee/Non-Flavored Regular Coffee")) {*/
+    if((x.includes('All Coffee/Flavored Coffee')) || (x.includes('All Coffee/Non-Flavored Regular Coffee')) || (x.includes('All Coffee/Decaf Coffee')) ) {
+        //console.log("true");
+        var poundHider = "hide";
+    /*	document.getElementById("myImg1").style.display = "none";
+        document.getElementById("myImg11").style.display = "none";
+
+        document.getElementById("myImg13").style.display = "none";
+        document.getElementById("myImg14").style.display = "none";
+        document.getElementById("myImg15").style.display = "none";
+    */
+    } else {
+        if( (x.includes('Single Cup')) || (x.includes('Single Cup/Single Cup Flavored')) || (x.includes('Single Cup/Hot Cocoa & Specialty')) ){
+            $("#alwaysroasted-detail").hide();
+            $("#size-available-detail").hide();
+            $("#grind-available-detail").hide();
+            $(".other-detail div").width('25%');
+            $("#GMO-detail p").text('ONLY NON-GMO COFFEE');
+        }
+        //console.log("false");
+    }
+
+    if(x.includes('All Coffee/Coffee Concentrate')) {
+        if($("#myImg").length) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/regularB.png'}}";
+        }
+        if($("#myImg1").length) {
+            document.getElementById("myImg1").src = "{{cdn '/assets/img/decafB.png'}}";
+        }
+
+        $("#alwaysroasted-detail").hide();
+        $("#grind-available-detail").hide();
+
+        $(".other-detail div").width('20%');
+
+        $("#size-available-detail img").attr("src", "{{cdn '/assets/img/available-bottles.png'}}");
+        $("#type-available-detail img").attr("src", "{{cdn '/assets/img/type-bottles.png'}}");
+        
+        $("#size-available-detail p").text("COMES IN, AVAILABLE IN 4oz, 8oz, 16oz");
+        $("#type-available-detail p").text("AVAILABLE IN REGULAR AND DECAF");
+        $("#GMO-detail p").text('ONLY NON-GMO COFFEE');
+    } else {
+        if($("#myImg").length) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/Regular.png'}}";
+        }
+        if($("#myImg1").length) {
+            document.getElementById("myImg1").src = "{{cdn '/assets/img/Decaf.png'}}";
+        }
+    }
+
+    if( x.includes('All Coffee/Non-Flavored Regular Coffee') ) {
+        if( x.includes('All Coffee/Decaf Coffee') ) {
+            if( texasMaple.includes("TEXAS MAPLE BOURBON") ) {
+                if($("#myImg").length) {
+                    $("#myImg").show();
+                }
+            } else {
+                if($("#myImg").length) {
+                    $("#myImg").hide();
+                }
+            }
+            if($("#myImg20").length) {
+                $("#myImg20").hide();
+            }
+        } else if( frenchToast.includes("FRENCH ROAST SUMATRA") ) {
+            if($("#myImg1").length) {
+                $("#myImg1").show();
+            }
+        } else {
+            if($("#myImg1").length) {
+                $("#myImg1").hide();
+            }
+        }
+    }
+
+    if( x.includes('All Coffee/Decaf Coffee') ) {
+        if( texasMaple.includes("TEXAS MAPLE BOURBON") ) {
+            if($("#myImg").length) {
+                $("#myImg").show();
+            }
+        } else {
+            if($("#myImg").length) {
+                $("#myImg").hide();
+            }
+        }
+        if($("#myImg20").length) {
+            $("#myImg20").hide();
+        }
+    }
+    
+
+    if( $("#product-category-validator").text().indexOf('All Coffee/Trial Size Coffee') > -1 ) {
+        console.log("trialz");
+
+        $("#size-available-detail").hide();
+
+
+        $("#grind-available-detail").hide();
+
+
+        $("#type-available-detail").hide();
+    }
+
+    if( $("#product-category-validator").text().indexOf('Gifts') > -1 ) {
+        if( $("#myImg21").length || $("#myImg19").length ) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/regular-gift.png'}}";
+        } else {
+            //do nothing
+        }
+    }
+    
+    if( $(".form-action.cart-product-page-action").length ) {
+        //console.log('yes cart');
+    } else {
+        $(".form.form-wishlist.form-action").addClass('no-cart-button');
+        //console.log('no cart');
+    }
+
+    function checkRadio() {
+        if(x.includes('All Coffee/Coffee Concentrate')) {
+            if($("#myImg").length) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/regularB-open.png'}}";
+            }
+            if($("#myImg1").length) {
+            document.getElementById("myImg1").src = "{{cdn '/assets/img/decafB.png'}}";
+            }
+        } else if(x.includes('Gifts')) {
+            if($("#myImg").length) {
+                if( $("#myImg21").length || $("#myImg19").length ) {
+                    document.getElementById("myImg").src = "{{cdn '/assets/img/regular-gift-open.png'}}";
+                } else {
+                    document.getElementById("myImg").src = "{{cdn '/assets/img/Regular-on.png'}}";
+                    document.getElementById("myImg1").src = "{{cdn '/assets/img/Decaf.png'}}";
+                }
+            }
+            if($("#myImg19").length) {
+            document.getElementById("myImg19").src = "{{cdn '/assets/img/flavored-gift.png'}}";
+            }
+        } else {
+            if($("#myImg").length) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/Regular-on.png'}}";
+            }
+            if($("#myImg1").length) {
+            document.getElementById("myImg1").src = "{{cdn '/assets/img/Decaf.png'}}";
+            }
+            if($("#myImg11").length) {
+                document.getElementById("myImg11").src = "{{cdn '/assets/img/swpd.png'}}";
+            }
+        }
+    }
+    function checkRadio1() {
+        if(x.includes('All Coffee/Coffee Concentrate')) {
+            if($("#myImg").length) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/regularB.png'}}";
+            }
+            if($("#myImg1").length) {
+            document.getElementById("myImg1").src = "{{cdn '/assets/img/decafB-open.png'}}";
+            }
+        } else {
+            if($("#myImg").length) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/Regular.png'}}";
+            }
+            if($("#myImg1").length) {
+            document.getElementById("myImg1").src = "{{cdn '/assets/img/Decaf-on.png'}}";
+            }
+            if($("#myImg11").length) {
+                document.getElementById("myImg11").src = "{{cdn '/assets/img/swpd.png'}}";
+            }
+        }
+    }
+    function checkRadio2() {
+        if($("#myImgWB").length) {
+            document.getElementById("myImgWB").src = "{{cdn '/assets/img/12ounce-wholebean.png'}}";
+        }
+        if($("#myImg2").length) {
+            document.getElementById("myImg2").src = "{{cdn '/assets/img/2lbWholebean-on.png'}}";
+        }
+        if($("#myImg3").length) {
+            document.getElementById("myImg3").src = "{{cdn '/assets/img/5lbWholeBean.png'}}";
+        }
+        if($("#myImg4").length) {
+            document.getElementById("myImg4").src = "{{cdn '/assets/img/UniversalDrip.png'}}";
+        }
+        if($("#myImg5").length) {
+            document.getElementById("myImg5").src = "{{cdn '/assets/img/PerkorCourse.png'}}";
+        }
+        if($("#myImg6").length) {
+            document.getElementById("myImg6").src = "{{cdn '/assets/img/EspressoFine.png'}}";
+        }
+    }
+    function checkRadio3() {
+        if($("#myImgWB").length) {
+        document.getElementById("myImgWB").src = "{{cdn '/assets/img/12ounce-wholebean.png'}}";
+        }
+        if($("#myImg2").length) {
+        document.getElementById("myImg2").src = "{{cdn '/assets/img/2lbWholebean.png'}}";
+        }
+        if($("#myImg3").length) {
+        document.getElementById("myImg3").src = "{{cdn '/assets/img/5lbWholeBean-on.png'}}";
+        }
+        if($("#myImg4").length) {
+        document.getElementById("myImg4").src = "{{cdn '/assets/img/UniversalDrip.png'}}";
+        }
+        if($("#myImg5").length) {
+        document.getElementById("myImg5").src = "{{cdn '/assets/img/PerkorCourse.png'}}";
+        }
+        if($("#myImg6").length) {
+        document.getElementById("myImg6").src = "{{cdn '/assets/img/EspressoFine.png'}}";
+        }
+    }
+    function checkRadio4() {
+        if($("#myImgWB").length) {
+        document.getElementById("myImgWB").src = "{{cdn '/assets/img/12ounce-wholebean.png'}}";
+        }
+        if($("#myImg2").length) {
+        document.getElementById("myImg2").src = "{{cdn '/assets/img/2lbWholebean.png'}}";
+        }
+        if($("#myImg3").length) {
+        document.getElementById("myImg3").src = "{{cdn '/assets/img/5lbWholeBean.png'}}";
+        }
+        if($("#myImg4").length) {
+        document.getElementById("myImg4").src = "{{cdn '/assets/img/UniversalDrip-on.png'}}";
+        }
+        if($("#myImg5").length) {
+        document.getElementById("myImg5").src = "{{cdn '/assets/img/PerkorCourse.png'}}";
+        }
+        if($("#myImg6").length) {
+        document.getElementById("myImg6").src = "{{cdn '/assets/img/EspressoFine.png'}}";
+        }
+    }
+    function checkRadio5() {
+        if($("#myImgWB").length) {
+        document.getElementById("myImgWB").src = "{{cdn '/assets/img/12ounce-wholebean.png'}}";
+        }
+        if($("#myImg2").length) {
+        document.getElementById("myImg2").src = "{{cdn '/assets/img/2lbWholebean.png'}}";
+        }
+        if($("#myImg3").length) {
+        document.getElementById("myImg3").src = "{{cdn '/assets/img/5lbWholeBean.png'}}";
+        }
+        if($("#myImg4").length) {
+        document.getElementById("myImg4").src = "{{cdn '/assets/img/UniversalDrip.png'}}";
+        }
+        if($("#myImg5").length) {
+        document.getElementById("myImg5").src = "{{cdn '/assets/img/PerkorCourse-on.png'}}";
+        }
+        if($("#myImg6").length) {
+        document.getElementById("myImg6").src = "{{cdn '/assets/img/EspressoFine.png'}}";
+        }
+    }
+    function checkRadio6() {
+        if($("#myImgWB").length) {
+        document.getElementById("myImgWB").src = "{{cdn '/assets/img/12ounce-wholebean.png'}}";
+        }
+        if($("#myImg2").length) {
+        document.getElementById("myImg2").src = "{{cdn '/assets/img/2lbWholebean.png'}}";
+        }
+        if($("#myImg3").length) {
+        document.getElementById("myImg3").src = "{{cdn '/assets/img/5lbWholeBean.png'}}";
+        }
+        if($("#myImg4").length) {
+        document.getElementById("myImg4").src = "{{cdn '/assets/img/UniversalDrip.png'}}";
+        }
+        if($("#myImg5").length) {
+        document.getElementById("myImg5").src = "{{cdn '/assets/img/PerkorCourse.png'}}";
+        }
+        if($("#myImg6").length) {
+        document.getElementById("myImg6").src = "{{cdn '/assets/img/EspressoFine-on.png'}}";
+        }
+    }
+    function checkrad7() {
+        document.getElementById("myImg7").src = "{{cdn '/assets/img/12ounce-ground-clicked.png'}}";
+        document.getElementById("myImg8").src = "{{cdn '/assets/img/2pounds-ground.png'}}";
+        document.getElementById("myImg9").src = "{{cdn '/assets/img/5pounds-ground.png'}}";
+
+        if( x.includes('All Coffee/Non-Flavored Regular Coffee') ) {
+            if( x.includes('All Coffee/Decaf Coffee') ) {
+                if( texasMaple.includes("TEXAS MAPLE BOURBON") ) {
+                    if($("#myImg").length) {
+                        $("#myImg").show();
+                    }
+                } else {
+                    if($("#myImg").length) {
+                        $("#myImg").hide();
+                    }
+                }
+                if($("#myImg20").length) {
+                    $("#myImg20").hide();
+                }
+            } else if( frenchToast.includes("FRENCH ROAST SUMATRA") ) {
+                if($("#myImg1").length) {
+                    $("#myImg1").show();
+                }
+            } else {
+                if($("#myImg1").length) {
+                    $("#myImg1").hide();
+                }
+            }
+        }
+
+        if( x.includes('All Coffee/Decaf Coffee') ) {
+            if( texasMaple.includes("TEXAS MAPLE BOURBON") ) {
+                if($("#myImg").length) {
+                    $("#myImg").show();
+                }
+            } else {
+                if($("#myImg").length) {
+                    $("#myImg").hide();
+                }
+            }
+            if($("#myImg20").length) {
+                $("#myImg20").hide();
+            }
+        }
+
+        /*if($("#myImg1").length) {
+            document.getElementById("myImg1").style.display = "unset";
+        }*/
+        if($("#myImg11").length) {
+            document.getElementById("myImg11").style.display = "unset";
+        }
+
+        if($("#myImg13").length) {
+            document.getElementById("myImg13").style.display = "unset";
+        }
+        if($("#myImg14").length) {
+            document.getElementById("myImg14").style.display = "unset";
+        }
+        if($("#myImg15").length) {
+            document.getElementById("myImg15").style.display = "unset";
+        }
+    }
+    function checkrad8() {
+        document.getElementById("myImg7").src = "{{cdn '/assets/img/12ounce-ground.png'}}";
+        document.getElementById("myImg8").src = "{{cdn '/assets/img/2pounds-ground-clicked.png'}}";
+        document.getElementById("myImg9").src = "{{cdn '/assets/img/5pounds-ground.png'}}";
+
+        if( x.includes('All Coffee/Non-Flavored Regular Coffee') ) {
+            if( x.includes('All Coffee/Decaf Coffee') ) {
+                if( texasMaple.includes("TEXAS MAPLE BOURBON") ) {
+                    if($("#myImg").length) {
+                        $("#myImg").show();
+                    }
+                } else {
+                    if($("#myImg").length) {
+                        $("#myImg").hide();
+                    }
+                }
+                if($("#myImg20").length) {
+                    $("#myImg20").hide();
+                }
+            } else if( frenchToast.includes("FRENCH ROAST SUMATRA") ) {
+                if($("#myImg1").length) {
+                    $("#myImg1").show();
+                }
+            } else {
+                if($("#myImg1").length) {
+                    $("#myImg1").hide();
+                }
+            }
+        }
+
+        if( x.includes('All Coffee/Decaf Coffee') ) {
+            if( texasMaple.includes("TEXAS MAPLE BOURBON") ) {
+                if($("#myImg").length) {
+                    $("#myImg").show();
+                }
+            } else {
+                if($("#myImg").length) {
+                    $("#myImg").hide();
+                }
+            }
+            if($("#myImg20").length) {
+                $("#myImg20").hide();
+            }
+        }
+
+        /*if($("#myImg1").length) {
+            document.getElementById("myImg1").style.display = "unset";
+        }*/
+        if($("#myImg11").length) {
+            document.getElementById("myImg11").style.display = "unset";
+        }
+
+        if($("#myImg13").length) {
+            document.getElementById("myImg13").style.display = "unset";
+        }
+        if($("#myImg14").length) {
+            document.getElementById("myImg14").style.display = "unset";
+        }
+        if($("#myImg15").length) {
+            document.getElementById("myImg15").style.display = "unset";
+        }
+    }
+    function checkradio9() {
+        document.getElementById("myImg7").src = "{{cdn '/assets/img/12ounce-ground.png'}}";
+        document.getElementById("myImg8").src = "{{cdn '/assets/img/2pounds-ground.png'}}";
+        document.getElementById("myImg9").src = "{{cdn '/assets/img/5pounds-ground-clicked.png'}}";
+
+        if(poundHider == "hide") {
+            if( x.includes('All Coffee/Non-Flavored Regular Coffee') ) {
+                if( x.includes('All Coffee/Decaf Coffee') ) {
+                    if($("#myImg").length) {
+                         $("#myImg").hide();
+                    }
+                } else if( frenchToast.includes("FRENCH ROAST SUMATRA") ) {
+                    if($("#myImg1").length) {
+                        $("#myImg1").show();
+                    }
+                } else {
+                    if($("#myImg1").length) {
+                        $("#myImg1").hide();
+                    }
+                } 
+            }
+            /*if($("#myImg11").length) {
+                document.getElementById("myImg11").style.display = "none";
+            }
+
+           if($("#myImg13").length) {
+                document.getElementById("myImg13").style.display = "none";
+            } */
+            if($("#myImg14").length) {
+                document.getElementById("myImg14").style.display = "none";
+            }
+            if($("#myImg15").length) {
+                document.getElementById("myImg15").style.display = "none";
+            }
+        } else {
+            
+            if($("#myImg1").length) {
+                $("#myImg1").show();
+            }
+            if($("#myImg11").length) {
+                document.getElementById("myImg11").style.display = "unset";
+            }
+
+            if($("#myImg13").length) {
+                document.getElementById("myImg13").style.display = "unset";
+            }
+            if($("#myImg14").length) {
+                document.getElementById("myImg14").style.display = "unset";
+            }
+            if($("#myImg15").length) {
+                document.getElementById("myImg15").style.display = "unset";
+            }
+        }
+    }
+    function checkrad10() {
+        document.getElementById("myImgWB").src = "{{cdn '/assets/img/12ounce-wholebeanbg.png'}}";
+        document.getElementById("myImg2").src = "{{cdn '/assets/img/2lbWholebean.png'}}";
+        document.getElementById("myImg3").src = "{{cdn '/assets/img/5lbWholeBean.png'}}";
+        document.getElementById("myImg4").src = "{{cdn '/assets/img/UniversalDrip.png'}}";
+        document.getElementById("myImg5").src = "{{cdn '/assets/img/PerkorCourse.png'}}";
+        document.getElementById("myImg6").src = "{{cdn '/assets/img/EspressoFine.png'}}";
+    }
+    function checkRadio11() {
+        if($("#myImg").length) {
+        document.getElementById("myImg").src = "{{cdn '/assets/img/Regular.png'}}";
+        }
+        if($("#myImg1").length) {
+        document.getElementById("myImg1").src = "{{cdn '/assets/img/Decaf.png'}}";
+        }
+        if($("#myImg11").length) {
+        document.getElementById("myImg11").src = "{{cdn '/assets/img/swpdclicked.png'}}";
+        }
+    }
+    function checkRad12() {
+        if($("#myImg12").length) {
+        document.getElementById("myImg12").src = "{{cdn '/assets/img/wholebeansbg.png'}}";
+        }
+        if($("#myImg13").length) {
+        document.getElementById("myImg13").src = "{{cdn '/assets/img/grounddrip.png'}}";
+        }
+        if($("#myImg14").length) {
+        document.getElementById("myImg14").src = "{{cdn '/assets/img/perkpress.png'}}";
+        }
+        if($("#myImg15").length) {
+        document.getElementById("myImg15").src = "{{cdn '/assets/img/espressofines.png'}}";
+        }
+    }
+    function checkRad13() {
+        if($("#myImg12").length) {
+        document.getElementById("myImg12").src = "{{cdn '/assets/img/wholebeans.png'}}";
+        }
+        if($("#myImg13").length) {
+        document.getElementById("myImg13").src = "{{cdn '/assets/img/grounddripbg.png'}}";
+        }
+        if($("#myImg14").length) {
+        document.getElementById("myImg14").src = "{{cdn '/assets/img/perkpress.png'}}";
+        }
+        if($("#myImg15").length) {
+        document.getElementById("myImg15").src = "{{cdn '/assets/img/espressofines.png'}}";
+        }
+    }
+    function checkRad14() {
+        if($("#myImg12").length) {
+        document.getElementById("myImg12").src = "{{cdn '/assets/img/wholebeans.png'}}";
+        }
+        if($("#myImg13").length) {
+        document.getElementById("myImg13").src = "{{cdn '/assets/img/grounddrip.png'}}";
+        }
+        if($("#myImg14").length) {
+        document.getElementById("myImg14").src = "{{cdn '/assets/img/perkpressbg.png'}}";
+        }
+        if($("#myImg15").length) {
+        document.getElementById("myImg15").src = "{{cdn '/assets/img/espressofines.png'}}";
+        }
+    }
+    function checkRad15() {
+        if($("#myImg12").length) {
+        document.getElementById("myImg12").src = "{{cdn '/assets/img/wholebeans.png'}}";
+        }
+        if($("#myImg13").length) {
+        document.getElementById("myImg13").src = "{{cdn '/assets/img/grounddrip.png'}}";
+        }
+        if($("#myImg14").length) {
+        document.getElementById("myImg14").src = "{{cdn '/assets/img/perkpress.png'}}";
+        }
+        if($("#myImg15").length) {
+        document.getElementById("myImg15").src = "{{cdn '/assets/img/espressofinesbg.png'}}";
+        }
+    }
+    function checkRad16() {
+        document.getElementById("myImg16").src = "{{cdn '/assets/img/4oz-open.png'}}";
+        document.getElementById("myImg17").src = "{{cdn '/assets/img/8oz.png'}}";
+        document.getElementById("myImg18").src = "{{cdn '/assets/img/16oz.png'}}";
+    }
+    function checkRad17() {
+        document.getElementById("myImg16").src = "{{cdn '/assets/img/4oz.png'}}";
+        document.getElementById("myImg17").src = "{{cdn '/assets/img/8oz-open.png'}}";
+        document.getElementById("myImg18").src = "{{cdn '/assets/img/16oz.png'}}";
+    }
+    function checkRad18() {
+        document.getElementById("myImg16").src = "{{cdn '/assets/img/4oz.png'}}";
+        document.getElementById("myImg17").src = "{{cdn '/assets/img/8oz.png'}}";
+        document.getElementById("myImg18").src = "{{cdn '/assets/img/16oz-open.png'}}";
+    }
+    function checkRad19() {
+        document.getElementById("myImg19").src = "{{cdn '/assets/img/flavored-gift-open.png'}}";
+        if($("#myImg").length) {
+            document.getElementById("myImg").src = "{{cdn '/assets/img/regular-gift.png'}}";
+        }
+        if($("#myImg20").length) {
+            document.getElementById("myImg20").src = "{{cdn '/assets/img/regular-gift.png'}}";
+        }
+        if($("#myImg21").length) {
+            document.getElementById("myImg21").src = "{{cdn '/assets/img/mix-gift.png'}}";
+        }
+    }
+    function checkRad20() {
+        document.getElementById("myImg19").src = "{{cdn '/assets/img/flavored-gift.png'}}";
+        document.getElementById("myImg20").src = "{{cdn '/assets/img/regular-gift-open.png'}}";
+        document.getElementById("myImg21").src = "{{cdn '/assets/img/mix-gift.png'}}";
+    }
+    function checkRad21() {
+        document.getElementById("myImg19").src = "{{cdn '/assets/img/flavored-gift.png'}}";
+        document.getElementById("myImg20").src = "{{cdn '/assets/img/regular-gift.png'}}";
+        document.getElementById("myImg21").src = "{{cdn '/assets/img/mix-gift-open.png'}}";
+    }
+    
+    function closeSubscribe() {
+        if($("#subscription-panel").length) {
+            //uncheck buttons
+            $('.unselect-data').prop('checked', false);
+           
+            $('.unselect-data').first().prop('checked', true);
+            
+            //Weekly Default Images
+            if($("#week1Img").length) {
+            document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week2Img").length) {
+            document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week3Img").length) {
+            document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week4Img").length) {
+            document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week5Img").length) {
+            document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week6Img").length) {
+            document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            
+            //Monthly Default Images
+            if($("#month1Img").length) {
+            document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month2Img").length) {
+            document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month3Img").length) {
+            document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month4Img").length) {
+            document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month5Img").length) {
+            document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month6Img").length) {
+            document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+    
+            $("#yup-sub").removeClass("active");
+            $("#nope-once").addClass("active");
+        
+            document.getElementById("subscription-panel").style.display = "none";
+            
+            if( categGet.includes('Gifts/Coffee Subscription Gifts') ) {
+                if($(".form-field.Select.Grind").length){
+                    $(".form-field.Select.Grind").hide();
+                    
+                    //uncheck buttons
+                    $('.form-field.Select.Grind .form-radio.radio-img-test').prop('checked', false);
+                   
+                    $('.form-field.Select.Grind .form-radio.radio-img-test').first().prop('checked', true);
+                }
+            }
+        } else {
+            //do nothing
+        }
+    }
+    
+    function openSubscribe() {
+        if($("#subscription-panel").length) {
+            $("#nope-once").removeClass("active");
+            $("#yup-sub").addClass("active");
+            
+            document.getElementById("subscription-panel").style.display = "unset";
+            
+            var categGet2 = document.getElementById("product-category-validator").innerText;
+            if( categGet2.includes('Gifts/Coffee Subscription Gifts') ) {
+                if($(".form-field.Select.Grind").length){
+                    $(".form-field.Select.Grind").show();
+                    $( "<div><p style='font-size: 18px; color: red;'>Please select a grind option.</p></div>" ).insertAfter( ".form-field.Select.Grind" );
+                }
+            }
+        } else {
+            //do nothing
+        }
+    }
+    
+    function openWeekly() {
+        //$("#weekly-button").addClass("active");
+        //$("#monthly-button").removeClass("active");
+        
+        document.getElementById("weeklyImg").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/byweeksopen.png?t=1595320251&_ga=2.248166915.545570939.1595290657-1335674609.1584404257";
+        document.getElementById("monthlyImg").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/bymonths.png?t=1595319937&_ga=2.240229639.545570939.1595290657-1335674609.1584404257";
+        
+        var checkSubscribeDiv = document.getElementById("subscription-choices");
+        if (window.getComputedStyle(checkSubscribeDiv).display === "none") {
+            document.getElementById("subscription-choices").style.display = "unset";
+            
+            document.getElementById("weekly-choices").style.display = "unset";
+            
+            $('.weekly-data').css('display','block');
+            $('.monthly-data').css('display','none');
+    	    
+    	    //uncheck buttons
+            $('.unselect-data').prop('checked', false);
+           
+            $('.unselect-data').first().prop('checked', true);
+            
+            //Monthly Default Images
+            if($("#month1Img").length) {
+            document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month2Img").length) {
+            document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month3Img").length) {
+            document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month4Img").length) {
+            document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month5Img").length) {
+            document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month6Img").length) {
+            document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+        } else {
+            document.getElementById("weekly-choices").style.display = "unset";
+            
+            $('.weekly-data').css('display','block');
+            $('.monthly-data').css('display','none');
+        
+            //uncheck buttons
+            $('.unselect-data').prop('checked', false);
+           
+            $('.unselect-data').first().prop('checked', true);
+            
+            //Monthly Default Images
+            if($("#month1Img").length) {
+            document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month2Img").length) {
+            document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month3Img").length) {
+            document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month4Img").length) {
+            document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month5Img").length) {
+            document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#month6Img").length) {
+            document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+            }
+        }
+    }
+    
+    function openMonthly() {
+        //$("#weekly-button").removeClass("active");
+        //$("#monthly-button").addClass("active");
+        
+        document.getElementById("weeklyImg").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/byweeks.png?t=1595319938&_ga=2.240229639.545570939.1595290657-1335674609.1584404257";
+        document.getElementById("monthlyImg").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/bymonthsopen.png?t=1595320250&_ga=2.248166915.545570939.1595290657-1335674609.1584404257";
+        
+        var checkSubscribeDiv = document.getElementById("subscription-choices");
+        if (window.getComputedStyle(checkSubscribeDiv).display === "none") {
+            document.getElementById("subscription-choices").style.display = "unset";
+            
+            document.getElementById("weekly-choices").style.display = "unset";
+            
+            $('.weekly-data').css('display','none');
+            $('.monthly-data').css('display','block');
+            
+            //uncheck buttons
+            $('.unselect-data').prop('checked', false);
+           
+            $('.unselect-data').first().prop('checked', true);
+            
+            //Weekly Default Images
+            if($("#week1Img").length) {
+            document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week2Img").length) {
+            document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week3Img").length) {
+            document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week4Img").length) {
+            document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week5Img").length) {
+            document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week6Img").length) {
+            document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+        } else {
+            document.getElementById("weekly-choices").style.display = "unset";
+            
+            $('.weekly-data').css('display','none');
+            $('.monthly-data').css('display','block');
+            
+            //uncheck buttons
+            $('.unselect-data').prop('checked', false);
+           
+            $('.unselect-data').first().prop('checked', true);
+            
+            //Weekly Default Images
+            if($("#week1Img").length) {
+            document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week2Img").length) {
+            document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week3Img").length) {
+            document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week4Img").length) {
+            document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week5Img").length) {
+            document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+            if($("#week6Img").length) {
+            document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+            }
+        }
+    }
+
+    //check other details
+    if( ($("#myImg1").length) && ($("#myImg").length) ) {
+        if( $("#type-available-detail").length ) {
+            $("#type-available-detail").show();
+        }
+    } else {
+        if( $("#type-available-detail").length ) {
+            $("#type-available-detail").hide();
+        }
+    }
+    
+    function weekRadio1() {
+
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1s.png?t=1594887608&_ga=2.174680674.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Monthly Default Images
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function weekRadio2() {
+        
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2s.png?t=1594887608&_ga=2.247727431.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Monthly Default Images
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function weekRadio3() {
+        
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3s.png?t=1594887609&_ga=2.247727431.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Monthly Default Images
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function weekRadio4() {
+        
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4s.png?t=1594887609&_ga=2.176858853.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Monthly Default Images
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function weekRadio5() {
+        
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5s.png?t=1594887610&_ga=2.246975812.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Monthly Default Images
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function weekRadio6() {
+        
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6s.png?t=1594887611&_ga=2.176858853.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Monthly Default Images
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    
+    function monthRadio1() {
+        
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1s.png?t=1594948520&_ga=2.141500274.1954939469.1594944699-2022211407.1593563526";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Weekly Default Images
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function monthRadio2() {
+        
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2s.png?t=1594948526&_ga=2.246307524.1954939469.1594944699-2022211407.1593563526";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Weekly Default Images
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function monthRadio3() {
+        
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3s.png?t=1594948531&_ga=2.246307524.1954939469.1594944699-2022211407.1593563526";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Weekly Default Images
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function monthRadio4() {
+        
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4s.png?t=1594948540&_ga=2.141500274.1954939469.1594944699-2022211407.1593563526";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Weekly Default Images
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function monthRadio5() {
+        
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5s.png?t=1594948545&_ga=2.141500274.1954939469.1594944699-2022211407.1593563526";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+        //Weekly Default Images
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    function monthRadio6() {
+        
+        if($("#month1Img").length) {
+        document.getElementById("month1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month2Img").length) {
+        document.getElementById("month2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month3Img").length) {
+        document.getElementById("month3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month4Img").length) {
+        document.getElementById("month4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month5Img").length) {
+        document.getElementById("month5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#month6Img").length) {
+        document.getElementById("month6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6s.png?t=1594948551&_ga=2.141500274.1954939469.1594944699-2022211407.1593563526";
+        }
+        
+        //Weekly Default Images
+        if($("#week1Img").length) {
+        document.getElementById("week1Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week2Img").length) {
+        document.getElementById("week2Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week3Img").length) {
+        document.getElementById("week3Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week4Img").length) {
+        document.getElementById("week4Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week5Img").length) {
+        document.getElementById("week5Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        if($("#week6Img").length) {
+        document.getElementById("week6Img").src = "https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257";
+        }
+        
+    }
+    
+    window.setInterval(function(){
+        if ($('.definitionClass:contains("Subscribe & Save:")').length > 0) {
+            var subscribeText = $('.definitionClass:contains("Subscribe & Save:")');
+            $('.definitionClass:last-child').append(subscribeText);
+            
+            clearInterval();
+        }
+    }, 1000);
+    
+</script>
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,6 @@
+{{#if product.similar_by_views}}
+    <section class="productSimilar padding-top-30 border-top" id="product-similar" data-product-reviews>
+        <h2 class="page-heading no-border">{{lang 'products.similar_by_views'}}</h2>
+        {{> components/products/carousel settings=../settings products=product.similar_by_views columns=5 arrows=true dots=false list="Customers Also Viewed"}}
+    </section>
+{{/if}}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./assets/js/theme/errors.js"],"names":["Errors","PageManager"],"mappings":";;;;;;;;;;;;;;;;;;AAAA;;IAEqBA,M;;;;;;;;;;EAAeC,qD;;AAAfD,qE","file":"theme-bundle.chunk.21.js","sourcesContent":["import PageManager from './page-manager';\n\nexport default class Errors extends PageManager {}\n"],"sourceRoot":""}

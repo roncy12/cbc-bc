@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./assets/js/theme/rss.js"],"names":["RSS","PageManager"],"mappings":";;;;;;;;;;;;;;;;;;AAAA;;IAEqBA,G;;;;;;;;;;EAAYC,qD;;AAAZD,kE","file":"theme-bundle.chunk.23.js","sourcesContent":["import PageManager from './page-manager';\n\nexport default class RSS extends PageManager {}\n\n"],"sourceRoot":""}

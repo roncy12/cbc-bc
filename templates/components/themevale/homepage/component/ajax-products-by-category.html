@@ -1,0 +1,32 @@
+{{#each categories}}
+    {{#if id '==' ../category_id}}
+        <ul class="productGrid productGrid--maxCol{{../../columns}}" data-themevale-products-by-category-tabs="{{url}}">
+            {{> components/themevale/homepage/component/product-loading}}
+        </ul>
+    {{else}}
+        {{#each children}}
+            {{#if id '==' ../../../category_id}}
+                <ul class="productGrid productGrid--maxCol{{../../../../columns}}" data-themevale-products-by-category-tabs="{{url}}">
+                    {{> components/themevale/homepage/component/product-loading}}
+                </ul>
+            {{else}}
+                {{#each children}}
+                    {{#if id '==' ../../../../../category_id}}
+                        <ul class="productGrid productGrid--maxCol{{../../../../../../columns}}" data-themevale-products-by-category-tabs="{{url}}">
+                            {{> components/themevale/homepage/component/product-loading}}
+                        </ul>
+
+                    {{else}}
+                        {{#each children}}
+                            {{#if id '==' ../../../../../../../category_id}}
+                                <ul class="productGrid productGrid--maxCol{{../../../../../../../../columns}}" data-themevale-products-by-category-tabs="{{url}}">
+                                    {{> components/themevale/homepage/component/product-loading}}
+                                </ul>
+                            {{/if}}
+                        {{/each}}
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        {{/each}}
+    {{/if}}
+{{/each}}

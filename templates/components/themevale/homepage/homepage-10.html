@@ -1,0 +1,40 @@
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel carousel=carousel layout="layout-10" arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots}}
+    {{/if}}
+    {{{snippet 'home_content'}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+    {{#each shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+<div class="main full">
+    
+    <div class="themevale-section background-gray text-center text-free-shipping">
+        <div class="container">
+            <div class="text">Free Shipping on all orders. No Minimum Purchase Required*</div>
+        </div>
+    </div>
+
+    {{> components/themevale/homepage/component/image-collections image-collections="image-collections-15" padding_top="padding-top-70" padding_bottom="padding-bottom-70"}}
+
+    {{#if products.new}}
+        {{> components/products/product-layout padding_top="padding-top-0" padding_bottom="padding-bottom-70" products=products.new title=theme_settings.homepage_products_new_title layout=theme_settings.homepage_products_new_layout_grid columns=theme_settings.homepage_products_new_column products_show=theme_settings.homepage_products_new_show products_limit=theme_settings.homepage_products_new_limit description=theme_settings.homepage_products_new_description custom="no-border"}}
+    {{/if}}
+
+    {{> components/themevale/homepage/component/image-collections image-collections="image-collections-16" padding_top="padding-top-0" padding_bottom="padding-bottom-70"}}
+
+    {{#if blog.recent_posts}}
+        {{> components/themevale/homepage/component/latest-post latest-post="latest-post-3" padding_top="padding-top-0" padding_bottom="padding-bottom-70" blog=blog.recent_posts columns=theme_settings.homepage_blog_column blog_show=theme_settings.homepage_blog_limit}}
+    {{/if}}
+
+    {{> components/themevale/homepage/component/brands-carousel brands-carousel="brands-carousel-3" padding_top="padding-top-0" padding_bottom="padding-bottom-70" arrows=true dots=false}}
+
+    {{> components/themevale/homepage/component/instagram-carousel instagram-carousel="instagram-carousel-5" padding_top="padding-top-50" padding_bottom="padding-bottom-70" title-border="no-border"}}
+
+</div>
+{{/partial}}
+{{> layout/base}}

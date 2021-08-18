@@ -1,0 +1,27 @@
+	
+<div class="Product-blocks" >
+{{#each (limit category.products 8)}}	
+	<div class="custom-content-slide">
+		{{#if image }}
+			<a class="navPage-childList-action navPages-action" href="{{url}}">
+			<img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">				
+			<label class="el-item-name">{{name}}</label>
+			</a>
+		{{/if}}
+	</div>
+{{/each}}
+</div>
+
+
+
+
+<!--<div class="Apframework-productsByCategory-products">
+	<ul class="Product-blocks productGrid productGrid--maxCol2">
+		\{{#each (limit category.products 8)}}
+		<li class="product">
+			\{{>components/products/card show_compare=../settings show_rating=../settings.show_product_rating setting_show = ../settings
+			theme_settings=../theme_settings customer=../customer}}
+		</li>
+		\{{/each}}
+	</ul>
+</div>-->

@@ -1,0 +1,62 @@
+<div class="header-Mobile-item text-left">
+    <div class="items item--hamburger">
+        <a class="mobileMenu-toggle" href="#" data-mobile-menu-toggle="menu">
+            <span class="mobileMenu-toggleIcon">Toggle menu</span>
+        </a>
+    </div>
+    <div class="items item--searchMobile">
+        <a class="navUser-action" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+            <div class="navUser-icon">
+                <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                <svg class="icon icon-close"><use xlink:href="#times"></use></svg>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="header-Mobile-item text-center">
+    <div class="items">
+        <div class="logo-wrapper">
+            {{#if page_type '===' 'default'}}
+                <h1 class="header-logo">
+                    {{> components/common/store-logo}}
+                </h1>
+            {{else}}
+                <div class="header-logo">
+                    {{> components/common/store-logo}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+<div class="header-Mobile-item text-right">
+    {{#if customer}}
+    <div class="items item--account" id="mobile-logged">
+        <a class="navUser-action accountMobile" href="javascript:void(0)">
+            <div class="navUser-icon">
+                    <svg class="icon"><use xlink:href="#icon-user"/></svg>
+                    <strong>{{customer.name}}.</strong>
+            </div>
+        </a>
+    </div>
+    {{else}}
+    <div class="items item--account" id="mobile-no-logged">
+        <a class="navUser-action accountMobile" href="javascript:void(0)">
+            <div class="navUser-icon">
+                <svg class="icon"><use xlink:href="#icon-user"/></svg>
+            </div>
+        </a>
+    </div>
+    {{/if}}
+    
+    <div class="items item--cart themevale_cart">
+        <a class="navUser-action cartMobile"
+            data-cart-preview
+            data-options="align:right"
+            href="{{urls.cart}}">
+            <div class="navUser-icon navUser-item-cartIcon">
+                <svg class="icon"><use xlink:href="#icon-cart"></use></svg>
+                <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./assets/js/theme/404-error.js"],"names":["Errors404","PageManager"],"mappings":";;;;;;;;;;;;;;;;;;AAAA;;IAEqBA,S;;;;;;;;;;EAAkBC,qD;;AAAlBD,wE","file":"theme-bundle.chunk.15.js","sourcesContent":["import PageManager from './page-manager';\n\nexport default class Errors404 extends PageManager {}\n"],"sourceRoot":""}

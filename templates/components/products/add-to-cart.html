@@ -1,0 +1,129 @@
+<div class="form-field form-field--increments">
+    <label class="form-label form-label--alternate"
+           for="qty[]">{{lang 'products.quantity'}}</label>
+    <div class="form-increment" data-quantity-change>
+        <button class="button button--icon" data-action="dec">
+            <i class="icon" aria-hidden="true">-</i>
+        </button>
+        <input class="form-input form-input--incrementTotal"
+               id="qty[]"
+               name="qty[]"
+               type="tel"
+               value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+               data-quantity-min="{{product.min_purchase_quantity}}"
+               data-quantity-max="{{product.max_purchase_quantity}}"
+               min="1"
+               pattern="[0-9]*"
+               aria-live="polite">
+        <button class="button button--icon" data-action="inc">
+            <i class="icon" aria-hidden="true">+</i>
+        </button>
+    </div>
+</div>
+    <div class="custom-buttons-add-to">
+        <a class="btn-nope active" id="nope-once" onclick="closeSubscribe();">
+            <span>ONCE</span><br>
+            Nope, just one time please
+        </a>
+        
+        <a class="btn-subscribe" id="yup-sub" onclick="openSubscribe();">
+            <span>SUBSCRIBE</span><br>
+            Yup, I would like this item to recur by subscription & save 10%.
+        
+        </a>
+    </div>
+    {{#each product.options}}	
+    {{#or (if this.display_name '===' 'Subscribe & Save') }}
+        <div id="subscription-panel" style="display: none;">
+            <div id="subscription-opions">
+                <label class="form-label form-label--alternate form-label--inlineSmall">
+                    Choose:
+                </label>
+                <div class="subscription-options-flex">
+                    <div id="weekly-button" rel="" class="sub-buttons"><img src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/byweeks.png?t=1595319938&_ga=2.180444835.545570939.1595290657-1335674609.1584404257" onclick="openWeekly();" id="weeklyImg"></div>
+                    <div id="monthly-button" rel="" class="sub-buttons"><img src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/bymonths.png?t=1595319937&_ga=2.180444835.545570939.1595290657-1335674609.1584404257" onclick="openMonthly();" id="monthlyImg"></div>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="set-select" id="subscription-choices" style="display: none;">
+
+                <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}">
+                    {{ this.display_name }}:
+                
+                    {{#if required}}
+                        <small>{{lang 'common.required'}}</small>
+                    {{/if}}
+                </label>
+                
+                <div id="weekly-choices" style="display: none;">
+                    {{#each this.values}}
+                    <label id="img-test" data-product-attribute-value="{{id}}" class="form-label radio-img subscription-check" for="attribute_radio_{{../id}}_{{id}}">
+                        <input
+                            class="form-radio radio-img-test unselect-data"
+                            type="radio"
+                            id="attribute_radio_{{../id}}_{{id}}"
+                            name="attribute[{{../id}}]"
+                            value="{{id}}"
+                            {{#if selected}}
+                                checked
+                                data-default
+                            {{/if}}
+                            {{#if ../required}}required{{/if}}>
+                            
+                            {{#is this.label 'Send every 1 week'}}
+                				<img id="week1Img" style="display: none;" class="weekly-data" onclick="weekRadio1();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week1.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 2 weeks'}}
+                				<img id="week2Img" style="display: none;" class="weekly-data" onclick="weekRadio2();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week2.png?t=1594884765&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 3 weeks'}}
+                				<img id="week3Img" style="display: none;" class="weekly-data" onclick="weekRadio3();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week3.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 4 weeks'}}
+                				<img id="week4Img" style="display: none;" class="weekly-data" onclick="weekRadio4();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week4.png?t=1594884766&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 5 weeks'}}
+                				<img id="week5Img" style="display: none;" class="weekly-data" onclick="weekRadio5();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week5.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 6 weeks'}}
+                				<img id="week6Img" style="display: none;" class="weekly-data" onclick="weekRadio6();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/week6.png?t=1594884767&_ga=2.243466565.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            
+                            {{#is this.label 'Send every 1 month'}}
+                				<img id="month1Img" style="display: none;" class="monthly-data" onclick="monthRadio1();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month1.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 2 months'}}
+                				<img id="month2Img" style="display: none;" class="monthly-data" onclick="monthRadio2();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month2.png?t=1594884946&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 3 months'}}
+                				<img id="month3Img" style="display: none;" class="monthly-data" onclick="monthRadio3();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month3.png?t=1594884947&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 4 months'}}
+                				<img id="month4Img" style="display: none;" class="monthly-data" onclick="monthRadio4();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month4.png?t=1594884948&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 5 months'}}
+                				<img id="month5Img" style="display: none;" class="monthly-data" onclick="monthRadio5();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month5.png?t=1594884949&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                            {{#is this.label 'Send every 6 months'}}
+                				<img id="month6Img" style="display: none;" class="monthly-data" onclick="monthRadio6();" src="https://cdn11.bigcommerce.com/s-zlze5h6hq9/product_images/uploaded_images/month6.png?t=1594884950&_ga=2.208815058.1541745109.1594859328-1335674609.1584404257" />
+                            {{/is}}
+                    </label>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    {{/or}}
+    {{/each}}
+
+<div class="alertBox productAttributes-message" style="display:none">
+    <div class="alertBox-column alertBox-icon">
+        <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+    </div>
+    <p class="alertBox-column alertBox-message"></p>
+</div>
+{{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+    <div class="form-action cart-product-page-action">
+        <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button" type="submit"
+            value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+    </div>
+     {{{snippet 'product_addtocart'}}}
+{{/or}}

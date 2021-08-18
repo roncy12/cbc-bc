@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./assets/js/theme/page.js"],"names":["Page","PageManager"],"mappings":";;;;;;;;;;;;;;;;;;AAAA;;IAEqBA,I;;;;;;;;;;EAAaC,qD;;AAAbD,mE","file":"theme-bundle.chunk.22.js","sourcesContent":["import PageManager from './page-manager';\n\nexport default class Page extends PageManager {}\n"],"sourceRoot":""}

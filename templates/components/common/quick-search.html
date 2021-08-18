@@ -1,0 +1,66 @@
+{{{ snippet "forms_search"}}}
+<form class="form headerSearchBox" action="{{urls.search}}">
+    <div class="form-fieldset">
+        <div class="form-field">
+            <label class="is-srOnly" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+            <div class="close-search-button"><span><i class="fa fa-times" aria-hidden="true"></i></span></div>
+            <input class="form-input headerSearchBox-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="Enter your text here" autocomplete="off">
+            
+            <!--<div class="search-span">
+                <div class="searchbox-icon"><i class="fa fa-search" aria-hidden="true"></i><div>Search</div></div>
+                
+            </div>-->
+
+            <!--<input class="form-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_label'}}" autocomplete="off">
+             <button class="button-submit" type="submit"><svg class="icon"><use xlink:href="#icon-search"></use></svg></button>-->
+        </div>
+        <div class="search-span">
+                <div class="searchbox-icon"><i class="fa fa-search" aria-hidden="true"></i><div>Search</div></div>
+                
+            </div>
+    </div>
+</form>
+<div class="quickSearchResults" data-bind="html: results"></div>
+
+<!--
+<script>
+      $(document).ready(function(){
+            var submitIcon = $('.searchbox-icon');
+            var inputBox = $('.headerSearchBox-input');
+            var searchBox = $('.headerSearchBox');
+            var isOpen = false;
+            submitIcon.click(function(){
+                if(isOpen == false){
+                    searchBox.addClass('searchbox-open');
+                    inputBox.focus();
+                    isOpen = true;
+                } else {
+                    searchBox.removeClass('searchbox-open');
+                    inputBox.focusout();
+                    isOpen = false;
+                }
+            });  
+             submitIcon.mouseup(function(){
+                    return false;
+                });
+            searchBox.mouseup(function(){
+                    return false;
+                });
+            $(document).mouseup(function(){
+                    if(isOpen == true){
+                        $('.searchbox-icon').css('display','block');
+                        submitIcon.click();
+                    }
+                });
+        });
+        function buttonUp(){
+            var inputVal = $('.headerSearchBox-input').val();
+            inputVal = $.trim(inputVal).length;
+            if( inputVal !== 0){
+                $('.searchbox-icon').css('display','none');
+            } else {
+                $('.headerSearchBox-input').val('');
+                $('.searchbox-icon').css('display','block');
+            }
+        }
+</script>-->

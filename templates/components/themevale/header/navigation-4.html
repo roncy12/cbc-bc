@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="navUser text-left">
+        <div class="navUser-item navUser-item--phone">
+            <a class="navUser-action store-phone" href="tel:{{settings.phone_number}}">
+                <svg class="icon big"><use xlink:href="#icon-telephone-2"></use></svg><span class="text">{{settings.phone_number}}</span>
+            </a>
+        </div>
+        <div class="navUser-item navUser-item--mail">
+            <a class="navUser-action" href="mailto:support@halothemes.com">
+                <svg class="icon big"><use xlink:href="#icon-envelope-2"></use></svg><span class="text">support@halothemes.com</span>
+            </a>
+        </div>
+    </div>
+    <div class="navUser text-center">
+        <div class="navUser-item"><p class="own-text">FREE DELIVERY WORLDWIDE</p></div>
+    </div>
+    <div class="navUser text-right">
+        <div class="navUser-item navUser-item--contact">
+            <a class="navUser-action" href="/contact-us/">need help?</a>
+        </div>
+        {{#if settings.gift_certificates_enabled}}
+        <div class="navUser-item">
+            <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+        </div>
+        {{/if}}
+        <div class="navUser-item navUser-item--currencySelector">
+            {{> components/common/currency-selector}}
+        </div>
+    </div>
+</div>

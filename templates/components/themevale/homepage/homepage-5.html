@@ -1,0 +1,40 @@
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel carousel=carousel layout="layout-3" arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots}}
+    {{/if}}
+    {{{snippet 'home_content'}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+    {{#each shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+<div class="main full">
+
+    {{> components/themevale/homepage/component/image-collections image-collections="image-collections-7" padding_top="padding-top-0" padding_bottom="padding-bottom-50"}}
+
+    {{> components/themevale/homepage/component/image-collections image-collections="image-collections-8" padding_top="padding-top-0" padding_bottom="padding-bottom-70"}}
+
+    {{#if products.new}}
+        {{> components/products/product-layout padding_top="padding-top-0" padding_bottom="padding-bottom-70" products=products.new title=theme_settings.homepage_products_new_title description=theme_settings.homepage_products_new_description layout=theme_settings.homepage_products_new_layout_grid columns=theme_settings.homepage_products_new_column products_show=theme_settings.homepage_products_new_show products_limit=theme_settings.homepage_products_new_limit}}
+    {{/if}}
+
+    {{> components/themevale/homepage/component/banner-parallax banner-parallax="banner-parallax-2"}}
+
+    {{> components/themevale/homepage/component/product-tabs-categories-2 padding_top="padding-top-50" padding_bottom="padding-bottom-50" products=products title=theme_settings.homepage_tabs_products-title columns=theme_settings.homepage_tabs_products_column products_limit=theme_settings.homepage_tabs_products_limit}}
+
+    {{> components/themevale/homepage/component/banner-parallax banner-parallax="banner-parallax-3"}}
+
+    {{#if blog.recent_posts}}
+        {{> components/themevale/homepage/component/latest-post latest-post="latest-post-1" padding_top="padding-top-70" padding_bottom="padding-bottom-70" blog=blog.recent_posts title=theme_settings.homepage_blog_title description=theme_settings.homepage_blog_description columns=theme_settings.homepage_blog_column blog_show=theme_settings.homepage_blog_limit}}
+    {{/if}}
+
+    {{> components/themevale/homepage/component/brands-carousel brands-carousel="brands-carousel-1" padding_top="padding-top-30" padding_bottom="padding-bottom-30" border-top="border-top"}}
+
+    {{> components/themevale/homepage/component/instagram-carousel instagram-carousel="instagram-carousel-1" padding_top="padding-top-50" padding_bottom="padding-bottom-70" title-border="no-border"}}
+
+</div>
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,122 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<footer class="footer {{#if theme_settings.footer-dark-layout}}themevale-footer-dark{{/if}}">
+    <div class="themevale_footer-middle">
+        <div class="container">
+            <section class="footer-info themevale_footer-info col-5">
+                <div class="footer-info-col footer-info-col--small footer-dropdownmobile" data-section-type="footer-categories">
+                    <h5 class="footer-info-heading">
+                        <span>Shop</span>
+                        <svg class="icon-dropdown"><use xlink:href="#icon-chevron-down"></use></svg>
+                    </h5>
+                    <ul class="footer-info-list">
+                        {{#each categories}}
+                            <li>
+                                <a href="{{url}}">{{name}}</a>
+                            </li>
+                        {{/each}}
+                        <li>
+                            <a href="/wholesale/">Wholesale</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-info-col footer-info-col--small footer-dropdownmobile" data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading">
+                        <span>Infomation</span>
+                        <svg class="icon-dropdown"><use xlink:href="#icon-chevron-down"></use></svg>
+                    </h5>
+                    <ul class="footer-info-list">
+                        {{#each pages}}
+                            <li>
+                                <a href="{{url}}">{{name}}</a>
+                            </li>
+                        {{/each}}
+                        <li>
+                            <a href="/terms-of-service/">Terms of Service</a>
+                        </li>
+                        <li>
+							<a href="/privacy-policy/">Privacy Policy</a>
+						</li>
+                        <li>
+							<a href="/refund-policy/">Refund Policy</a>
+						</li>
+                        <li>
+                            <a href="/shipping-returns/">Shipping & Returns</a>
+                        </li>
+                        <li>
+                            <a href="/referral-page/">Refer A Friend</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-info-col footer-info-col--small footer-dropdownmobile" data-section-type="footer-services">
+                    <h5 class="footer-info-heading">
+                        <span>Customer Service</span>
+                        <svg class="icon-dropdown"><use xlink:href="#icon-chevron-down"></use></svg>
+                    </h5>
+                    <ul class="footer-info-list">
+                        <li><a href="/contact-us/">Contact Us</a></li>
+                        <li><a href="/faqs/">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-info-col social-media" data-section-type="newsletterSubscription">
+                    <div class="item">
+                        <h5 style="color:#ebddb8" class="footer-info-heading">Stay Connected</h5>
+                        <div class="footer-social">
+							<a href="https://www.facebook.com/ChristopherBeanCoffee/" target="_blank"><i class="fa fa-facebook" style="font-size:36px;color:#5ff0ff;padding: 0 10px 0 0;"></i></a>
+							<a href="https://twitter.com/chrisbeancoffee" target="_blank"><i class="fa fa-twitter" style="font-size:36px;color:#5ff0ff;padding: 0 10px;"></i></a>
+                            <a href="https://www.instagram.com/christopherbeancoffee/" target="_blank"><i class="fa fa-instagram" style="font-size:36px;color:#5ff0ff;padding: 0 0 0 10px;"></i></a>
+                        </div>
+						
+						
+                    </div>
+                </div>
+            </section>
+			{{> components/common/payment-icons}}
+        </div>
+    </div>
+    <div class="themevale_footer-bottom">
+        <div class="container">
+            <div class="wrapper">
+                <div class="item">
+                    {{#if theme_settings.show_copyright_footer}}
+                        <div class="footer-copyright">
+                            <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
+                        </div>
+                    {{/if}}
+
+                  <!--  {{#if theme_settings.show_powered_by}}
+                        <div class="footer-copyright">
+                            <p class="powered-by">Bigcommerce Themes & Templates by <a href="themevale.com" rel="nofollow">ThemeVale.com</a></p>
+                        </div>
+                    {{/if}}
+
+                    {{> components/common/payment-icons}}
+                </div>
+                <div class="item">
+                    {{#if theme_settings.geotrust_ssl_common_name}}
+                        <div class="footer-geotrust-ssl-seal">
+                            {{> components/common/geotrust-ssl-seal}}
+                        </div>
+                    {{/if}} -->	
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    $( ".searchbox-icon" ).click(function() {
+       $(".navUser-item--quickSearch .form-field").fadeTo("fast", 1);
+       
+       $( ".close-search-button" ).click(function() {
+           $(".navUser-item--quickSearch .form-field").fadeTo("fast", 0);
+       });
+       
+      /* $( ".navUser-item.navUser-item--quickSearch" ).mouseleave(function() {
+           $(".navUser-item--quickSearch .form-field").fadeTo(1000, 0);
+       }); */
+    });
+   
+</script>
